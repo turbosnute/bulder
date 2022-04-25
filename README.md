@@ -1,5 +1,5 @@
 # bulder
-Attempt to make a bouldering logging app optimized for norwegian color graded boulders.
+Attempt to make app for logging your first ascent of boulders optimized for norwegian color graded indoor boulders.
 
 ## Components
 ### Web Server Container
