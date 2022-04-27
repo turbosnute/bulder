@@ -1,36 +1,63 @@
 <?php
-    //check if admin.
+    session_start();
+    if ($_SESSION['access'] != 'granted') {
+      header("Location: login.php");
+    }
     include('top.php');
+
+    // check if places api key exists.
+    include "dbconfig.php";
+    $query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'placeskey' LIMIT 1;";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) != 0) {
+      $row = mysqli_fetch_assoc($result);
+      $placeskey = $row['value'];
+      $places = True;
+    } else {
+      $placeskey = "";
+      $places = False;
+    }
+    mysqli_close($conn);
 ?>
 
   <div class="bg-light p-5 rounded">
     <h1>Add Crag</h1>
-    <form>
+    <form method="post" action="processnewcrag.php">
+        <?php
+          if ($places) {
+        ?>
         <div class="mb-3">
         <label for="autocomplete" class="form-label">Search</label>
             <input id="autocomplete" class="form-control" placeholder="Search address" type="text"></input>
         </div>
+        <?php
+          }
+        ?>
         <div class="mb-3">
             <label for="frmCragName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="frmCragName" value="">
+            <input type="text" class="form-control" name="frmCragName" id="frmCragName" value="">
         </div>
         <div class="mb-3">
             <label for="frmLon" class="form-label">Longitude</label>
-            <input type="text" class="form-control" id="frmLon" value="">
+            <input type="text" class="form-control" name="frmLon" id="frmLon" value="">
         </div>
         <div class="mb-3">
             <label for="frmLat" class="form-label">Latitude</label>
-            <input type="text" class="form-control" id="frmLat" value="">
+            <input type="text" class="form-control" name="frmLat" id="frmLat" value="">
         </div>
         <div class="mb-3">
             <label for="frmCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="frmCity" value="">
+            <input type="text" class="form-control" name="frmCity" id="frmCity" value="">
         </div>
         <div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Submit">
         </div>
     </form>
   </div>
+  <?php
+    if ($places) {
+  ?>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCfRCncd6qM9hMR5em49g9BAD1s7dQXhZk&libraries=places"></script>
   <script>
 function initialize() {
 
@@ -103,7 +130,10 @@ return null;
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-    </script>
+</script>
+<?php
+  }
+?>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
