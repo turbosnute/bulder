@@ -18,11 +18,11 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) === 0) {
 	echo "Creating user database...<br />";
 	$query = "CREATE TABLE `bulder_user` (
-		`user_id` INT NOT AUTO_INCREMENT,
+		`user_id` INT NOT NULL AUTO_INCREMENT,
 		`name` VARCHAR(50) NOT NULL DEFAULT '',
 		`email` VARCHAR(50) NOT NULL DEFAULT '',
 		`lastcrag_id` INT NOT NULL DEFAULT 0,
-		`password` VARCHAR(128) NOT NULL DEFAULT '0',
+		`password` VARCHAR(128) NOT NULL DEFAULT '',
 		PRIMARY KEY (`user_id`)
 	)
 	COLLATE='utf8mb4_unicode_520_ci'
@@ -117,14 +117,14 @@ mysqli_close($conn);
 
 ?>
 
-<form>
+<form action="saveSetup.php" method="post">
         <div class="mb-3">
             <label for="frmPlacesKey" class="form-label">Google Maps Places API key (leave blank if you don't want to use places)</label>
-            <input type="text" class="form-control" id="frmPlacesKey" value="<?php echo $placeskey; ?>">
+            <input type="text" class="form-control" name="frmPlacesKey" id="frmPlacesKey" value="<?php echo $placeskey; ?>">
         </div>
         <div class="mb-3">
             <label for="frmGoogleAuthKey" class="form-label">Google oAuth API key (leave blank if you don't want to use Google Auth)</label>
-            <input type="text" class="form-control" id="frmGoogleAuthKey" value="<?php echo $gauthkey; ?>">
+            <input type="text" class="form-control" name="frmGoogleAuthKey" id="frmGoogleAuthKey" value="<?php echo $gauthkey; ?>">
         </div>
 		<div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Save">

@@ -4,25 +4,11 @@
       header("Location: login.php");
     }
     include('top.php');
-
-    // check if places api key exists.
-    include "dbconfig.php";
-    $query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'placeskey' LIMIT 1;";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) != 0) {
-      $row = mysqli_fetch_assoc($result);
-      $placeskey = $row['value'];
-      $places = True;
-    } else {
-      $placeskey = "";
-      $places = False;
-    }
-    mysqli_close($conn);
 ?>
 
   <div class="bg-light p-5 rounded">
-    <h1>Crags</h1>
-    <a class="btn btn-primary" href="addCrag.php">Add new crag</a>
+    <h1>Gyms</h1>
+    <a class="btn btn-primary" href="addCrag.php">Add new gym</a>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -32,11 +18,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Grip Klatring Sluppen</td>
-          <td>Trondheim</td>
-          <td><span class="glyphicon glyphicon-remove"></span></td>
-        </tr>
+        <?php
+          include "dbconfig.php";
+          $query = "SELECT * FROM `bulder`.`bulder_crag`;";
+          $result = mysqli_query($conn, $query);
+          if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+              echo "<tr><td>".$row["name"]."</td><td>".$row["city"]."</td><td></td></tr>";
+            }
+          } else {
+            echo "<tr><td colspan='3'>No Gyms found</td></tr>";
+          }
+          mysqli_close($conn);
+        ?>
+        
       </tbody>
    </table>
   </div>

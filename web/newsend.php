@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if ($_SESSION['access'] != 'granted') {
+      header("Location: login.php");
+    }
     include('top.php');
 ?>
   <div class="bg-light p-5 rounded">
@@ -9,9 +13,17 @@
             <label for="frmCrag" class="form-label">Location</label>
             <select id="frmCrag" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                 <option selected>Select Location</option>
-                <option value="1">Grip Sluppen</option>
-                <option value="2">Grip Leangen</option>
-                <option value="3">Trondheim Buldresenter</option>
+                <?php
+                    include "dbconfig.php";
+                    $query = "SELECT * FROM `bulder`.`bulder_crag`;";
+                    $result = mysqli_query($conn, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                      while($row = mysqli_fetch_assoc($result)) {
+                        echo "<option value='".$row["crag_id"]."'>".$row["name"]." (".$row["city"].")</option>";
+                      }
+                    }
+                    mysqli_close($conn);
+                ?>
             </select>
         </div>
         <div class="mb-3">
