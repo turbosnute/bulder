@@ -16,7 +16,7 @@ $query = "SHOW TABLES LIKE 'bulder_user';";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) === 0) {
-	echo "Creating user database...<br />";
+	echo "Creating user table...<br />";
 	$query = "CREATE TABLE `bulder_user` (
 		`user_id` INT NOT NULL AUTO_INCREMENT,
 		`name` VARCHAR(50) NOT NULL DEFAULT '',
@@ -37,7 +37,7 @@ $query = "SHOW TABLES LIKE 'bulder_crag';";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) === 0) {
-	echo "Creating crag database...<br />";
+	echo "Creating crag table...<br />";
 	$query = "CREATE TABLE `bulder_crag` (
 		`crag_id` INT NOT NULL AUTO_INCREMENT,
 		`name` VARCHAR(40) NOT NULL,
@@ -54,33 +54,33 @@ if (mysqli_num_rows($result) === 0) {
 }
 
 // Create tables
-$query = "SHOW TABLES LIKE 'bulder_ascent';";
+
+$query = "SHOW TABLES LIKE 'bulder_send';";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) === 0) {
-	echo "Creating ascent database...<br />";
-	$query = "CREATE TABLE `bulder_ascent` (
-		`ascent_id` INT NOT NULL AUTO_INCREMENT,
-		`user_id` INT NOT NULL,
-		`crag_id` INT NOT NULL,
-		`style` VARCHAR(15) NOT NULL DEFAULT 'send',
-		`grade` VARCHAR(15) NOT NULL,
-		`terrain` VARCHAR(15) NOT NULL DEFAULT 'indoor',
-		PRIMARY KEY (`ascent_id`)
+	echo "Creating send table...<br />";
+	$query = "CREATE TABLE `bulder_send` (
+		`send_id` INT NOT NULL AUTO_INCREMENT,
+		`user_id` INT NOT NULL DEFAULT '0',
+		`crag_id` INT NOT NULL DEFAULT '0',
+		`style` VARCHAR(10) NOT NULL DEFAULT 'send',
+		`grade` VARCHAR(10) NOT NULL DEFAULT '0',
+		`terrain` VARCHAR(10) NOT NULL DEFAULT 'indoor',
+		`date` DATE NULL DEFAULT CURDATE(),
+		PRIMARY KEY (`send_id`)
 	)
 	COLLATE='utf8mb4_unicode_520_ci'
-	;
-	";
+	;";
 
 	mysqli_query($conn, $query);
 }
-
 
 $query = "SHOW TABLES LIKE 'bulder_setting';";
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) === 0) {
-	echo "Creating setting database...<br />";
+	echo "Creating setting table...<br />";
 	$query = "CREATE TABLE `bulder_setting` (
 		`setting` TINYTEXT NULL,
 		`value` MEDIUMTEXT NULL,

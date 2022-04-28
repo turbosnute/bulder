@@ -3,12 +3,16 @@
 	if ($_SESSION['access'] != 'granted') {
 		header("Location: login.php");
 	}
-    $name = $_POST['frmName'];
-    $mail = $_POST['frmMail'];
-    $pw = $_POST['frmPw'];
+
+    $crag = $_POST['frmCrag'];
+    $date = $_POST['frmDate'];
+    $grade = $_POST['frmGrade'];
+    $style = $_POST['frmStyle'];
+
+    echo "Gym: $crag  Date: $date Grade: $grade Style: $style";
 
 
-
+/*
     if (empty($name) || empty($mail) || empty($pw)) {
         echo "go back, remember to fill inn all boxes.";
     } else {
@@ -23,5 +27,6 @@
         $result = mysqli_query($conn, $query);
         mysqli_close($conn);
         header("Location: users.php");
-    }
+   }
+   */
 ?>

@@ -77,8 +77,8 @@
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-        <input id="user" name="user" type="text" class="form-control" placeholder="Username">
-        <label for="user">Username</label>
+        <input id="mail" name="mail" type="text" class="form-control" placeholder="Username">
+        <label for="mail">Username</label>
         </div>
         <div class="form-floating">
         <input id="pw" name="pw" type="password" class="form-control"  placeholder="Password">

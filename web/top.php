@@ -32,16 +32,19 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Register Send</a>
+                <a class="nav-link active" aria-current="page" href="index.php">Loogbook</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logbook</a>
+                    <a class="nav-link" href="#">Stats</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Stats</a>
+                <a class="nav-link" href="crags.php">Gyms</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="processlogout.php">Log Out (upn)</a>
+                <a class="nav-link" href="users.php">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="processlogout.php">Log Out (<?php echo $_SESSION['user_name']; ?>)</a>
                 </li>
             </ul>
             </div>
