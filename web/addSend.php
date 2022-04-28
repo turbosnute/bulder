@@ -31,32 +31,60 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Grade</label><br />
-            <input type="radio" class="btn-check" name="frmGrade" id="yellow" value="yellow" autocomplete="off">
-            <label class="btn btn-yellow" for="yellow">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="green" value="green" autocomplete="off">
-            <label class="btn btn-green" for="green">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="blue" value="blue" autocomplete="off" checked>
-            <label class="btn btn-blue" for="blue">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="red" value="red" autocomplete="off">
-            <label class="btn btn-red" for="red">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="black" value="black" autocomplete="off">
-            <label class="btn btn-black" for="black">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="white" value="white" autocomplete="off">
-            <label class="btn btn-white" for="white">&nbsp;</label>
+            <div class="row">
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="yellow" value="yellow" autocomplete="off">
+                    <label class="btn btn-yellow w-100" for="yellow">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="green" value="green" autocomplete="off">
+                    <label class="btn btn-green w-100" for="green">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="blue" value="blue" autocomplete="off" checked>
+                    <label class="btn btn-blue w-100" for="blue">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="red" value="red" autocomplete="off">
+                    <label class="btn btn-red w-100" for="red">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="black" value="black" autocomplete="off">
+                    <label class="btn btn-black w-100" id="lblBlack" for="black">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="white" value="white" autocomplete="off">
+                    <label class="btn btn-white w-100" for="white">&nbsp;</label>
+                </div>
+            </div>
         </div>
         <div class="mb-3">
-            <input type="radio" class="btn-check" name="frmGrade" id="yellowgreen" value="yellowgreen" autocomplete="off">
-            <label class="btn btn-yellowgreen" for="yellowgreen">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="greenblue" value="greenblue" autocomplete="off">
-            <label class="btn btn-greenblue" for="greenblue">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="bluered" value="bluered" autocomplete="off">
-            <label class="btn btn-bluered" for="bluered">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="redblack" value="redblack" autocomplete="off">
-            <label class="btn btn-redblack" for="redblack">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="blackwhite" value="blackwhite" autocomplete="off">
-            <label class="btn btn-blackwhite" for="blackwhite">&nbsp;</label>
-            <input type="radio" class="btn-check" name="frmGrade" id="rainbw" value="rainbw" autocomplete="off">
-            <label class="btn btn-rainbw" for="rainbw">&nbsp;</label>
+            <div class="row">
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="yellowgreen" value="yellowgreen" autocomplete="off">
+                    <label class="btn btn-yellowgreen w-100" for="yellowgreen">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="greenblue" value="greenblue" autocomplete="off">
+                    <label class="btn btn-greenblue w-100" for="greenblue">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="bluered" value="bluered" autocomplete="off">
+                    <label class="btn btn-bluered w-100" for="bluered">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="redblack" value="redblack" autocomplete="off">
+                    <label class="btn btn-redblack w-100" for="redblack">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="blackwhite" value="blackwhite" autocomplete="off">
+                    <label class="btn btn-blackwhite w-100" for="blackwhite">&nbsp;</label>
+                </div>
+                <div class="col">
+                    <input type="radio" class="btn-check" name="frmGrade" id="rainbw" value="rainbw" autocomplete="off">
+                    <label class="btn btn-rainbw w-100" for="rainbw">&nbsp;</label>
+                </div>
+            </div>
         </div>
 
         <div class="mb-3">
