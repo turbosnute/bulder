@@ -2,16 +2,14 @@
 Attempt to make app for logging your first ascent of boulders optimized for norwegian color graded indoor boulders.
 
 ## Components
+Apache, PHP, MariaDB and Bootstrap.
 
-### Web Server Container
-* Alpine?
-* PHP?
-* Bootstrap?
-* Google oauth?
+### Containers
+* php7.2:apache + mysqli
+* mariadb
 
-### Database Server Container
-* Alpine
-* MariaDB?
+### External APIs
+* Google Maps Places API.
 
 ## Database Diagram
   ![Database diagram](bulder.drawio.png)
