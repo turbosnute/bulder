@@ -37,6 +37,8 @@
     $sanitized_style = mysqli_real_escape_string($conn, $style);
     $sanitized_grade = mysqli_real_escape_string($conn, $grade);
 
+    $_SESSION['last_date'] = $sanitized_date;
+
     $query = "INSERT INTO `bulder`.`bulder_send` (`user_id`, `crag_id`, `style`, `grade`, `date`) VALUES ($user_id, '$sanitized_crag', '$sanitized_style', '$sanitized_grade', '$sanitized_date');";
     $result = mysqli_query($conn, $query);
 

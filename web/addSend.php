@@ -27,7 +27,7 @@
     </div>
     <div class="mb-3">
         <label for="frmDate" class="form-label">Date</label>
-        <input type="text" class="form-control" name="frmDate" id="frmDate" value="<?php echo date("Y-m-d");?>">
+        <input type="text" class="form-control" name="frmDate" id="frmDate" value="<?php if (isset($_SESSION['last_date'])) { echo $_SESSION['last_date']; } else { echo date("Y-m-d"); }?>">
     </div>
     <div class="mb-3">
         <label class="form-label">Grade</label><br />
