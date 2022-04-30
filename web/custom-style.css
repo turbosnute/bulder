@@ -1,56 +1,113 @@
+:root {
+    --yellow: #ffc107;
+    --green: #51dc35;
+    --blue: #4635dc;
+    --red: #dc3545;
+    --black: #272727;
+    --white: #dadada;
+}
+
+
 /* Navbar stuff */
 body {
     min-height: 75rem;
     padding-top: 4.5rem;
 }
 
-
-
 /* Custom color toggle buttons */
 .btn-yellow {
     color: #000;
-    background-color: #ffc107 !important;
+    background-color: var(--yellow) !important;
     margin-bottom:5px;
     /* box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); */
 }
-.btn-yellow:hover {
-    color: #000;
-    background-color: #ffca2c !important;
+
+.btn-c:hover {
+    filter: brightness(85%)
+}
+
+.bg-yellow {
+    --bs-bg-opacity: 1;
+    background-color: var(--yellow) !important;
+}
+.bg-green {
+    --bs-bg-opacity: 1;
+    background-color: var(--green) !important;
+}
+.bg-blue {
+    --bs-bg-opacity: 1;
+    background-color: var(--blue) !important;
+}
+.bg-red {
+    --bs-bg-opacity: 1;
+    background-color: var(--red) !important;
+}
+.bg-black {
+    --bs-bg-opacity: 1;
+    background-color: var(--black) !important;
+}
+.bg-white {
+    --bs-bg-opacity: 1;
+    background-color: var(--white) !important;
+}
+.bg-yellowgreen {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(0deg, var(--green)  0%, var(--green)  50%, var(--yellow) 50%, var(--yellow) 100%);
+}
+.bg-greenblue {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(0deg, var(--blue)  0%, var(--blue)  50%, var(--green) 50%, var(--green) 100%);
+}
+.bg-bluered {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(0deg, var(--red) 0%, var(--red) 50%, var(--blue) 50%, var(--blue) 100%);
+}
+.bg-redblack {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(0deg, var(--black) 0%, var(--black) 50%, var(--red) 50%, var(--red) 100%);
+}
+.bg-blackwhite {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(0deg, var(--white) 0%, var(--white) 50%, var(--black) 50%, var(--black) 100%);
+}
+.bg-rainbw {
+    --bs-bg-opacity: 1;
+    background: linear-gradient(90deg, var(--yellow) 0%, var(--green) 20%, var(--blue) 40%, var(--red) 60%, var(--black) 80%, var(--white) 100%);
+
 }
 
 .btn-yellowgreen {
     color: #000;
-    background: linear-gradient(0deg, rgba(81,220,53,1) 50%, rgba(81,220,53,1) 50%, rgba(255,193,7,1) 0%, rgba(255,193,7,1) 100%);
+    background: linear-gradient(0deg, var(--green)  0%, var(--green)  50%, var(--yellow) 50%, var(--yellow) 100%);
 }
-.btn-yellowgreen:hover {
-    color: #000;
-    background-color: linear-gradient(0deg, rgba(255,193,7,1) 0%, rgba(255,193,7,1) 50%, rgba(81,220,53,1) 50%, rgba(81,220,53,1) 100%);
-}
-
 
 .btn-green {
     color: #000;
-    background-color: #51dc35 !important;
+    background-color: var(--green) !important;
     margin-bottom:5px;
 }
 .btn-green:hover {
-    color: #fff;
-    background-color: #49bb2d !important;
+    filter: brightness(85%)
 }
+
+.btn-check:checked + .btn, .btn-check:active + .btn, .btn:active, .btn.active, .show > .btn.dropdown-toggle {
+    color: #000;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.5);
+  }
 
 .btn-greenblue {
     color: #000;
-    background: linear-gradient(0deg, rgba(70,53,220,1) 50%, rgba(70,53,220,1) 50%, rgba(81,220,53,1) 0%, rgba(81,220,53,1) 100%);
+    background: linear-gradient(0deg, var(--blue) 50%, var(--blue) 50%, var(--green)  0%, var(--green)  100%);
     margin-bottom:5px;
 }
 .btn-greenblue:hover {
     color: #000;
-    background: linear-gradient(0deg, rgba(70,53,220,1) 50%, rgba(70,53,220,1) 50%, rgba(81,220,53,1) 0%, rgba(81,220,53,1) 100%);
+    background: linear-gradient(0deg, var(--blue) 50%, var(--blue) 50%, var(--green)  0%, var(--green)  100%);
 }
 
 .btn-blue {
     color: #fff;
-    background-color: #4635dc !important;
+    background-color: var(--blue) !important;
     margin-bottom:5px;
 }
 .btn-blue:hover {
@@ -60,13 +117,12 @@ body {
 
 .btn-bluered {
     color: #fff;
-    background: linear-gradient(0deg, rgba(220,53,69,1) 0%, rgba(220,53,69,1) 50%, rgba(70,53,220,1) 50%, rgba(70,53,220,1) 100%);
-    border-color: #3835dc;
+    background: linear-gradient(0deg, rgba(220,53,69,1) 0%, rgba(220,53,69,1) 50%, var(--blue) 50%, var(--blue) 100%);
     margin-bottom:5px;
 }
 .btn-bluered:hover {
     color: #fff;
-    background: linear-gradient(0deg, rgba(220,53,69,1) 0%, rgba(220,53,69,1) 50%, rgba(70,53,220,1) 50%, rgba(70,53,220,1) 100%);
+    background: linear-gradient(0deg, rgba(220,53,69,1) 0%, rgba(220,53,69,1) 50%, var(--blue) 50%, var(--blue) 100%);
 }
 
 .btn-red {
@@ -121,9 +177,9 @@ body {
 
 .btn-rainbw {
     background: rgb(255,214,0);
-    background: linear-gradient(90deg, rgba(255,214,0,1) 0%, rgba(3,222,6,1) 20%, rgba(40,51,246,1) 40%, rgba(246,40,40,1) 60%, rgba(0,0,0,1) 80%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(90deg, rgba(255,214,0,1) 0%, var(--green) 20%, var(--blue) 40%, rgba(246,40,40,1) 60%, rgba(0,0,0,1) 80%, rgba(255,255,255,1) 100%);
 }
 .btn-rainbw:hover {
     background: rgb(255,214,0);
-    background: linear-gradient(90deg, rgba(255,214,0,1) 0%, rgba(3,222,6,1) 20%, rgba(40,51,246,1) 40%, rgba(246,40,40,1) 60%, rgba(0,0,0,1) 80%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(90deg, rgba(255,214,0,1) 0%, var(--green) 20%, var(--blue) 40%, rgba(246,40,40,1) 60%, rgba(0,0,0,1) 80%, rgba(255,255,255,1) 100%);
 }

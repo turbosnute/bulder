@@ -41,7 +41,7 @@
                 <a class="nav-link active" aria-current="page" href="index.php">Logbook</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Stats</a>
+                    <a class="nav-link" href="stats.php">Stats</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="crags.php">Gyms</a>

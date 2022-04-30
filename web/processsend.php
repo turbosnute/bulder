@@ -14,6 +14,13 @@
     $date = $_POST['frmDate'];
     $grade = $_POST['frmGrade'];
     $style = $_POST['frmStyle'];
+    $send_id = $_POST['frmSendId'];
+
+    if($_POST['frmIsEdit'] == "YES") {
+        $isedit = true;
+    } else {
+        $isedit = false;
+    }
 
     if (!(validateDate($date, "Y-m-d"))) {
         die("Date should be in 'yyyy-mm-dd' format.");
@@ -31,17 +38,25 @@
 
     include('dbconfig.php');
 
-
-    $sanitized_crag = mysqli_real_escape_string($conn, $crag);
+    $sanitized_crag = intval(mysqli_real_escape_string($conn, $crag));
     $sanitized_date = mysqli_real_escape_string($conn, $date);
     $sanitized_style = mysqli_real_escape_string($conn, $style);
     $sanitized_grade = mysqli_real_escape_string($conn, $grade);
+    $sanitized_send_id = mysqli_real_escape_string($conn, $send_id);
 
     $_SESSION['last_date'] = $sanitized_date;
+    $_SESSION['last_crag_id'] = $sanitized_crag;
 
-    $query = "INSERT INTO `bulder`.`bulder_send` (`user_id`, `crag_id`, `style`, `grade`, `date`) VALUES ($user_id, '$sanitized_crag', '$sanitized_style', '$sanitized_grade', '$sanitized_date');";
+    if ($isedit) {
+        $query = "UPDATE `bulder`.`bulder_send` SET `crag_id`='$sanitized_crag', `style`='$sanitized_style', `grade`='$sanitized_grade', `date`='$sanitized_date' WHERE `send_id`='$sanitized_send_id' AND `user_id`='$user_id';";
+
+    } else {
+        $query = "INSERT INTO `bulder`.`bulder_send` (`user_id`, `crag_id`, `style`, `grade`, `date`) VALUES ($user_id, $sanitized_crag, '$sanitized_style', '$sanitized_grade', '$sanitized_date');";
+    }
     $result = mysqli_query($conn, $query);
 
+    $query = "UPDATE `bulder`.`bulder_user` SET `lastcrag_id`=$sanitized_crag WHERE `user_id`='$user_id';";
+    $result = mysqli_query($conn, $query);
 
     mysqli_close($conn);
     header("Location: index.php");

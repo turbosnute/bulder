@@ -65,7 +65,7 @@ if (mysqli_num_rows($result) === 0) {
 		`user_id` INT NOT NULL DEFAULT '0',
 		`crag_id` INT NOT NULL DEFAULT '0',
 		`style` VARCHAR(10) NOT NULL DEFAULT 'send',
-		`grade` VARCHAR(10) NOT NULL DEFAULT '0',
+		`grade` VARCHAR(25) NOT NULL DEFAULT '0',
 		`terrain` VARCHAR(10) NOT NULL DEFAULT 'indoor',
 		`date` DATE NULL DEFAULT CURDATE(),
 		PRIMARY KEY (`send_id`)
