@@ -76,6 +76,30 @@ if (mysqli_num_rows($result) === 0) {
 	mysqli_query($conn, $query);
 }
 
+/*
+CREATE TABLE `bulder_grade` (
+	`grade` VARCHAR(25) NULL DEFAULT NULL,
+	`hardness` TINYINT UNSIGNED NULL DEFAULT NULL
+)
+COLLATE='utf8mb4_unicode_520_ci'
+;
+ALTER TABLE `bulder_grade`
+	CHANGE COLUMN `grade` `grade` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_520_ci' FIRST,
+	CHANGE COLUMN `hardness` `hardness` TINYINT(3) UNSIGNED NOT NULL AFTER `grade`,
+	ADD UNIQUE INDEX `grade` (`grade`);
+
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('yellow', '10');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('yellowgreen', '11');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('green', '12');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('greenblue', '13');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('blue', '14');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('bluered', '15');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('red', '16');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('redblack', '17');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('black', '18');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('blackwhite', '19');
+INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`) VALUES ('white', '20');
+*/
 $query = "SHOW TABLES LIKE 'bulder_setting';";
 $result = mysqli_query($conn, $query);
 

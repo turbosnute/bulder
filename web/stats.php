@@ -8,30 +8,60 @@
 
   <div class="bg-light p-5 rounded">
     <h1>Stats</h1>
-    highest send, favorite gym, number of climbs. diary?
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">E-mail</th>
-        </tr>
-      </thead>
-      <tbody>
         <?php
           include "dbconfig.php";
-          $query = "SELECT * FROM `bulder`.`bulder_user`;";
+
+          # Number of sends
+          $query = "SELECT COUNT(send_id) AS 'count' FROM `bulder_send` WHERE `user_id` = '1' LIMIT 1";
           $result = mysqli_query($conn, $query);
+          
           if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-              echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td></tr>";
-            }
+            $row = mysqli_fetch_assoc($result);
+            $send_count = $row['count'];
           } else {
-            echo "<tr><td colspan='3'>No users found</td></tr>";
+            $send_count = 0;
           }
+
+          if ($send_count == 0) {
+            echo "Register more sends to see statistics.";
+          } else {
+            echo "Send Count: $send_count";
+            # Most number of sends in a day 
+            $query = "SELECT COUNT(DATE) AS 'count', `date` FROM `bulder_send` WHERE `user_id` = '1' GROUP BY DATE ORDER BY COUNT LIMIT 1";
+
+            # grade stats and favorite grade.
+            $query = "SELECT COUNT(grade) AS 'count' , grade FROM `bulder_send` WHERE `user_id` = '1' GROUP BY grade ORDER BY 'count' LIMIT 1;";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            //$favorite_grade = $row['grade'];
+            //echo "Favorite Grade: $favorite_grade";
+
+            # favorite gym.
+            $query = "SELECT `bulder_send`.`crag_id`, `bulder_crag`.`name`, COUNT(`bulder_send`.`crag_id`) AS 'count' FROM `bulder_send` INNER JOIN `bulder`.`bulder_crag` ON `bulder_send`.crag_id = `bulder_crag`.crag_id WHERE `user_id` = '1' GROUP BY crag_id ORDER BY 'count' ASC LIMIT 1";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            $favorite_crag_name = $row['name'];
+            $favorite_crag_count = $row['count'];
+            echo "Favorite Gym: $favorite_crag_name ($favorite_crag_count sends).";
+
+            # hardest send.
+            $query = "SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`, `bulder_crag`.crag_id, `bulder_crag`.name,`bulder_send`.style, `bulder_grade`.`hardness`, `bulder_send`.grade
+                      FROM `bulder_send`
+                      INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
+                      INNER JOIN `bulder`.`bulder_crag` ON `bulder_send`.crag_id = `bulder_crag`.crag_id
+                      WHERE `user_id` = '1' AND `bulder_send`.style = 'send'
+                      ORDER BY hardness DESC, DATE ASC
+                      LIMIT 1";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            $hardest_send_crag = $row['name'];
+            $hardest_send_date = $row['date'];
+            $hardest_send_grade = $row['grade'];
+            echo "Hardest Send: $hardest_send_grade ($hardest_send_date at $hardest_send_crag)";
+          }
+
           mysqli_close($conn);
         ?>
-        
-      </tbody>
    </table>
   </div>
 

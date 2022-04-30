@@ -13,3 +13,10 @@ Apache, PHP, MariaDB and Bootstrap.
 
 ## Database Diagram
   ![Database diagram](bulder.drawio.png)
+
+## Needs fixing
+ * grade database must be created and populated in setup.php
+ * delete functionality on edit sends.
+ * diary (github contributors style?)
+ * change locale on calendar so weeks start on monday.
+ * google auth
