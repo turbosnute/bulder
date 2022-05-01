@@ -48,8 +48,10 @@
 
             if ($sendStyle == 'flash') {
               $icon = "<i class=\"bi bi-lightning-fill\"></i>";
-            } else {
+            } elseif ($sendStyle == 'send') {
               $icon = "<i class=\"bi bi-send-fill\"></i>";
+            } else {
+              $icon = "<i class=\"bi bi-arrow-repeat\"></i>";
             }
 
             echo "<a class='btn-c badge bg-$sendGrade' href='addSend.php?edit=".$send_id."' style='color:#FFF;'>$icon $sendStyle</a> ";

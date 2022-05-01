@@ -9,7 +9,7 @@
 ?>
 
   <div class="bg-light p-5 rounded">
-    <h1>Stats</h1>
+    <h1>Your Stats</h1>
         <?php
           include "dbconfig.php";
 
