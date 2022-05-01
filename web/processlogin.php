@@ -11,7 +11,8 @@
             $_SESSION['access'] = 'granted';
             $_SESSION['user_name'] = 'Adam Ondra';
             $_SESSION['user_id'] = 5000000;
-            header("Location: index.php");
+            $_SESSION['user_class'] = 'admin';
+            header("Location: setup.php");
         } else {
             #
             # Check user db

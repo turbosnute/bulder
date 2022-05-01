@@ -15,7 +15,12 @@ Apache, PHP, MariaDB and Bootstrap.
   ![Database diagram](bulder.drawio.png)
 
 ## Needs fixing
-* sends: terrain: slap/vert/overhang (?)
+* login should be compatible with chrome save pw.
+* stats page should be blanker when you don't have any sends.
+* it should not be possible to delete the last crag.
+* users.php should show user_class.
+* iso dates shold be replaced with nicer dates, maybe locale js stuff.
+* sends: terrain: slap/vert/overhang (?).
 * Download logbook to csv.
 * confirmation dialog on deletes?
 * google auth.

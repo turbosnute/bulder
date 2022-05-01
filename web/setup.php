@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if ($_SESSION['access'] != 'granted') {
+	if ($_SESSION['user_class'] != 'admin') {
 		header("Location: login.php");
 	}
 	include('top.php');
@@ -52,6 +52,11 @@ if (mysqli_num_rows($result) === 0) {
 	";
 
 	mysqli_query($conn, $query);
+
+	$query = "INSERT INTO `bulder_crag` (`crag_id`, `name`, `lon`, `lat`, `city`) VALUES
+	(1, 'Grip Klatring Sluppen', 10.3953684, 63.39757919999999, 'Trondheim')";
+	mysqli_query($conn, $query);
+
 }
 
 // Create tables
@@ -119,8 +124,8 @@ $result = mysqli_query($conn, $query);
 if (mysqli_num_rows($result) === 0) {
 	echo "Creating setting table...<br />";
 	$query = "CREATE TABLE `bulder_setting` (
-		`setting` TINYTEXT NULL,
-		`value` MEDIUMTEXT NULL,
+		`setting` VARCHAR(20) NULL DEFAULT NULL,
+		`value` VARCHAR(500) NULL DEFAULT NULL,
 		UNIQUE INDEX `setting` (`setting`)
 	)
 	COLLATE='utf8mb4_unicode_520_ci'

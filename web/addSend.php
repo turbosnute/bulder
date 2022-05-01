@@ -117,7 +117,7 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
         <label class="btn btn-secondary" for="send">Send</label>
         <input type="radio" class="btn-check" name="frmStyle" id="flash" value="flash" autocomplete="off"<?php if ($selectedstyle == 'flash') { echo " checked";}?>>
         <label class="btn btn-secondary" for="flash">Flash!</label>
-        <input type="radio" class="btn-check" name="frmStyle" id="repeat" value="repeat" autocomplete="off"<?php if ($selectedstyle == 'flash') { echo " checked";}?>>
+        <input type="radio" class="btn-check" name="frmStyle" id="repeat" value="repeat" autocomplete="off"<?php if ($selectedstyle == 'repeat') { echo " checked";}?>>
         <label class="btn btn-secondary" for="repeat">Repeat</label>
     </div>
     <input type="hidden" id="frmIsEdit" name="frmIsEdit" value="<?php echo $isEdit; ?>">

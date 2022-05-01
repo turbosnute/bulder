@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if ($_SESSION['access'] != 'granted') {
+	if ($_SESSION['user_class'] != 'admin') {
 		header("Location: login.php");
 	}
     $placesKey = $_POST['frmPlacesKey'];
@@ -13,8 +13,9 @@
 
     #$query = "INSERT INTO `bulder`.`bulder_crag` (`name`, `lon`, `lat`, `city`) VALUES ('$sanitized_name', '$sanitized_lon', '$sanitized_lat', '$sanitized_city');";
     $query = "INSERT INTO `bulder`.`bulder_setting` (`setting`, `value`) VALUES ('placeskey', '$sanitized_placesKey') ON DUPLICATE KEY UPDATE VALUE = '$sanitized_placesKey';";
+
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
-    header("Location: index.php");
+    header("Location: addUser.php?firstuser=true");
 
 ?>

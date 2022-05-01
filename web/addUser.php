@@ -7,7 +7,7 @@
 ?>
 
   <div class="bg-light p-5 rounded">
-    <h1>Add User</h1>
+    <h1>Add <?php if($_GET['firstuser'] == 'true') { echo "Admin "; }?>User</h1>
     <form method="post" action="processnewuser.php">
         <div class="mb-3">
             <label for="frmName" class="form-label">Name</label>
@@ -22,8 +22,15 @@
             <input type="password" class="form-control" name="frmPw" id="frmPw" placeholder="Password">
         </div>
         <div class="mb-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="frmAdminUser" name="frmAdminUser" <?php if($_GET['firstuser'] == 'true') { echo "checked"; }?>>
+            <label class="form-check-label" for="frmAdminUser">Admin User</label>
+          </div>
+        </div>
+        <div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Submit">
         </div>
+        
     </form>
   </div>
     <style>
