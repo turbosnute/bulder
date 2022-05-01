@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if ($_SESSION['access'] != 'granted') {
+    if ($_SESSION['user_class'] != 'admin') {
       header("Location: login.php");
     }
     include('top.php');  

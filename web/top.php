@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Buldr</title>
+    <title>Bulder</title>
     <style>
         #autocomplete {
             width: 300px;
@@ -38,17 +38,23 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.php">Logbook</a>
+                <a class="nav-link<?php if ($site == 'logbook') { echo ' active';}?>" aria-current="page" href="index.php">Logbook</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stats.php">Stats</a>
+                    <a class="nav-link<?php if ($site == 'stats') { echo ' active';}?>" href="stats.php">Stats</a>
+                </li>
+                <?php
+                if ($_SESSION['user_class'] == 'admin') {
+                ?>
+                <li class="nav-item">
+                <a class="nav-link<?php if ($site == 'gyms') { echo ' active';}?>" href="crags.php">Gyms</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="crags.php">Gyms</a>
+                <a class="nav-link<?php if ($site == 'users') { echo ' active';}?>" href="users.php">Users</a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="users.php">Users</a>
-                </li>
+                <?php
+                }
+                ?>
                 <li class="nav-item">
                     <a class="nav-link" href="processlogout.php">Log Out (<?php echo $_SESSION['user_name']; ?>)</a>
                 </li>

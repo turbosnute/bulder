@@ -15,10 +15,17 @@ Apache, PHP, MariaDB and Bootstrap.
   ![Database diagram](bulder.drawio.png)
 
 ## Needs fixing
- * grade database must be created and populated in setup.php
+ * grade database must be created and populated in setup.php.
  * delete functionality on edit sends.
  * confirmation dialog on deletes?
- * diary (github contributors style?)
+ * diary (github contributors style?).
  * change locale on calendar so weeks start on monday.
- * google auth
- * User classes (all should probably not be admins).
+ * google auth.
+ * Download logbook to csv.
+ * Stats: max send in a day.
+ * Update ER-diagram.
+ * grades should have friendlyname (Blue-Red instead of bluered)
+ * Setup should add first admin user
+ * stats: visited x times is wrong.
+ * stats: hardest flash should not be shown if user has no flashes.
+ * x sends logged should have other icon. maybe a list icon.

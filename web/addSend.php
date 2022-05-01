@@ -7,10 +7,14 @@
 
     $existing_send = null;
     $edit = $_GET['edit'];
-
+    if (isset($edit) && (is_int(intval($edit)))) {
+        $title = "Edit send";
+    } else {
+        $title = "Register new send";
+    }
 ?>
 <div class="bg-light p-5 rounded">
-<h1>Register new send</h1>
+<h1><?php echo $title;?></h1>
 <form id="sendform" action="processsend.php" method="post">
 
     <div class="mb-3">
@@ -24,7 +28,7 @@
                 $submitButtonText = "Submit"; //default text for submit button. 
                 $isEdit = 'NO';
                 $send_id = -1;
-                if ( isset($edit) &&(is_int(intval($edit)))) {
+                if (isset($edit) && (is_int(intval($edit)))) {
                     $query = "SELECT * FROM `bulder`.`bulder_send` WHERE `send_id` = $edit AND `user_id` = ".$_SESSION['user_id']." LIMIT 1;";
                     $result = mysqli_query($conn, $query);
 
@@ -118,6 +122,12 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
     <input type="hidden" id="frmSendId" name="frmSendId" value="<?php echo $send_id; ?>">
     <div class="mb-3">
         <input class="btn btn-primary" type="submit" value="<?php echo $submitButtonText; ?>">
+        <?php
+            if (isset($edit) && (is_int(intval($edit)))) {
+                // delete button
+                echo "<a href=\"deletesend.php?sendId=$edit\" class=\"btn btn-danger\">Delete Send<a/>";
+            }
+        ?>
     </div>
 </form>
 </div>

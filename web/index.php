@@ -3,6 +3,7 @@
     if ($_SESSION['access'] != 'granted') {
       header("Location: login.php");
     }
+    $site = "logbook";
     include('top.php');
 ?>
 

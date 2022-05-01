@@ -22,23 +22,23 @@
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
-                mysqli_close($conn);
                 $_SESSION['access'] = 'granted';
                 $_SESSION['user_name'] = $row['name'];
                 $_SESSION['user_id'] = $row['user_id'];
-                $last_crag_id = intval($row['last_crag_id']);
+                $_SESSION['user_class'] = $row['user_class'];
+                $last_crag_id = intval($row['lastcrag_id']);
 
-                if ($last_crag_id) == 0 {
-                    $query = "SELECT crag_id FROM `bulder`.`bulder_crag` LIMIT 1;";
+                if ($last_crag_id == 0) {
+                    $query = "SELECT `crag_id` FROM `bulder`.`bulder_crag` LIMIT 1;";
                     $result = mysqli_query($conn, $query);
                     if (mysqli_num_rows($result) == 1) {
                         $row = mysqli_fetch_assoc($result);
-                        $last_crag_id = intval($row['lasct_crag_id']);
+                        $last_crag_id = intval($row['crag_id']);
                     }
                 }
 
                 $_SESSION['last_crag_id'] = intval($last_crag_id);
-
+                mysqli_close($conn);
                 header("Location: index.php");
             } else {
                 header("Location: login.php");
