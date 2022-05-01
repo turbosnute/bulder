@@ -17,6 +17,7 @@ Apache, PHP, MariaDB and Bootstrap.
 ## Needs fixing
 * stats page should be blanker when you don't have any sends.
 * places api key should actually get cetched from db.
+* make svg logo
 * it should not be possible to delete the last crag.
 * users.php should show user_class.
 * iso dates shold be replaced with nicer dates, maybe locale js stuff.
