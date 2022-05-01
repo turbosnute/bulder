@@ -75,14 +75,13 @@
     <form method="post" action="processlogin.php">
         <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
         <div class="form-floating">
-        <input id="mail" name="mail" type="text" class="form-control" placeholder="Username">
-        <label for="mail">Username</label>
+        <input id="mail" name="mail" type="text" class="form-control" placeholder="Mail" autocomplete="username email" />
+        <label for="mail">mail</label>
         </div>
         <div class="form-floating">
-        <input id="pw" name="pw" type="password" class="form-control"  placeholder="Password">
-        <label for="pw">Password</label>
+        <input id="pw" name="pw" type="password" class="form-control"  placeholder="Password" autocomplete="new-password" />
+        <label for="pw">password</label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     </form>

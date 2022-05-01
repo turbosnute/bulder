@@ -15,17 +15,16 @@ Apache, PHP, MariaDB and Bootstrap.
   ![Database diagram](bulder.drawio.png)
 
 ## Needs fixing
-* login should be compatible with chrome save pw.
 * stats page should be blanker when you don't have any sends.
+* places api key should actually get cetched from db.
 * it should not be possible to delete the last crag.
 * users.php should show user_class.
 * iso dates shold be replaced with nicer dates, maybe locale js stuff.
-* sends: terrain: slap/vert/overhang (?).
+* sends: terrain: slab/vert/overhang (?).
 * Download logbook to csv.
 * confirmation dialog on deletes?
 * google auth.
 * grades should have friendlyname (Blue-Red instead of bluered)
-* Setup should add first admin user
 * change locale on calendar so weeks start on monday.
 * Update ER-diagram.
 * diary (https://stackoverflow.com/questions/66624190/how-to-create-in-php-a-full-year-table-html).
