@@ -21,9 +21,18 @@ body {
     margin-bottom:5px;
     /* box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); */
 }
+.btn-c {
+    color:#fff !important;
+}
 
 .btn-c:hover {
-    filter: brightness(85%)
+    color:#fff !important;
+    filter: brightness(85%);
+}
+
+.btn-c:active {
+    color:rgb(186, 186, 186) !important;
+    filter: brightness(70%);
 }
 
 .bg-yellow {

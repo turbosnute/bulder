@@ -52,7 +52,7 @@
               $icon = "<i class=\"bi bi-send-fill\"></i>";
             }
 
-            echo "<a class='badge bg-$sendGrade' href='addSend.php?edit=".$send_id."'>$icon $sendStyle</a> ";
+            echo "<a class='btn-c badge bg-$sendGrade' href='addSend.php?edit=".$send_id."' style='color:#FFF;'>$icon $sendStyle</a> ";
             //echo '<i class="bi-github" role="img" aria-label="GitHub"></i>';
             $first = $false;
           }
