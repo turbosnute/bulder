@@ -18,6 +18,7 @@
       $places = False;
     }
     mysqli_close($conn);
+
 ?>
 
   <div class="bg-light p-5 rounded">
@@ -57,7 +58,7 @@
   <?php
     if ($places) {
   ?>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCfRCncd6qM9hMR5em49g9BAD1s7dQXhZk&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<?php echo $placeskey; ?>&libraries=places"></script>
   <script>
 function initialize() {
 

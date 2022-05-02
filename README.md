@@ -16,7 +16,6 @@ Apache, PHP, MariaDB and Bootstrap.
 
 ## Needs fixing
 * confirmation dialog on deletes?
-* places api key should actually get cetched from db.
 * try making compatible with linuxserver.io/mariadb (by adding mysql_password env variables in addition to mariadb envs.)
 * it should not be possible to delete the last crag.
 * users.php should have edit/delete?
