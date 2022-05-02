@@ -144,7 +144,9 @@
           }
 
           mysqli_close($conn);
-        ?>
+
+          if ($send_count > 0) {
+?>
 
 
 <div class="card mb-3">
@@ -171,6 +173,9 @@
         <p class="card-text"><small class="text-muted"><i class="bi bi-bicycle"></i> <?php echo "Visited $favorite_crag_visit_count times";?><br /><i class="bi bi-geo-alt"></i> <?php echo $favorite_crag_city;?></small></p>
       </div>
 </div>
+<?php
+          } # end if send_count > 0
+?>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
