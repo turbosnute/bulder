@@ -122,8 +122,9 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
     </div>
     <input type="hidden" id="frmIsEdit" name="frmIsEdit" value="<?php echo $isEdit; ?>">
     <input type="hidden" id="frmSendId" name="frmSendId" value="<?php echo $send_id; ?>">
+    <hr />
     <div class="mb-3">
-        <input class="btn btn-primary" type="submit" value="<?php echo $submitButtonText; ?>">
+        <input class="btn btn-primary" type="submit" value="<?php echo $submitButtonText; ?>"> 
         <?php
             if (isset($edit) && (is_int(intval($edit)))) {
                 // delete button
