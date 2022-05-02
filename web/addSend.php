@@ -127,7 +127,31 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
         <?php
             if (isset($edit) && (is_int(intval($edit)))) {
                 // delete button
-                echo "<a href=\"deletesend.php?sendId=$edit\" class=\"btn btn-danger\">Delete Send<a/>";
+                //echo "<a href=\"deletesend.php?sendId=$edit\" class=\"btn btn-danger\">Delete Send<a/>";
+                //echo "<a href=\"deletesend.php?sendId=$edit\" class=\"btn btn-danger\">Delete Send<a/>";
+                ?>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete Send</button>  
+
+                <!-- Modal -->
+                <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteModalLabel">Delete Send</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this send?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                        <a class="a btn btn-danger" href="<?php echo "deletesend.php?sendId=$edit";?>">Delete</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <?php
             }
         ?>
     </div>
@@ -147,8 +171,6 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
 
 <script>
     document.addEventListener('DOMContentLoaded', function (e) {
-
-
         $('[name="frmDate"]')
             .datepicker({
                 autoclose: true,

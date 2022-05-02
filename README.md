@@ -1,5 +1,5 @@
 # bulder
-Attempt to make app for logging your first ascent of boulders optimized for norwegian color graded indoor boulders.
+Attempt to make app for logging your first ascent of boulders optimized for Trondheim (Norway) color graded indoor boulders.
 
 ## Components
 Apache, PHP, MariaDB and Bootstrap.
@@ -11,11 +11,9 @@ Apache, PHP, MariaDB and Bootstrap.
 ### External APIs
 * Google Maps Places API.
 
-## Database Diagram
-  ![Database diagram](bulder.drawio.png)
-
 ## Needs fixing
 * confirmation dialog on deletes?
+* add send buttons should be fetched from db to make it possible to change grading systems in the future.
 * try making compatible with linuxserver.io/mariadb (by adding mysql_password env variables in addition to mariadb envs.)
 * it should not be possible to delete the last crag.
 * users.php should have edit/delete?

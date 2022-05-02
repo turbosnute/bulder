@@ -30,9 +30,10 @@
         <div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Submit">
         </div>
-        
     </form>
   </div>
+
+  
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
