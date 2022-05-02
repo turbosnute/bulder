@@ -15,6 +15,7 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">E-mail</th>
+          <th scope="col">User Class</th>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +25,7 @@
           $result = mysqli_query($conn, $query);
           if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
-              echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td></tr>";
+              echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td><td>".$row['user_class']."</tr>";
             }
           } else {
             echo "<tr><td colspan='3'>No users found</td></tr>";
