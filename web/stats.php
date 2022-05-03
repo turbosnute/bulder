@@ -5,7 +5,7 @@
           $access = 'granted';
       }
     } else {
-        $access = $null;
+        $access = null;
     }
 
     if ($access != 'granted') {
