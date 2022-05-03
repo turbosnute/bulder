@@ -1,6 +1,12 @@
 <?php
     session_start();
-    if ($_SESSION['access'] != 'granted') {
+    if (isset($_SESSION['user_class'])) {
+      $user_class = $_SESSION['user_class'];
+    } else {
+          $user_class = null;
+    }
+
+    if ($user_class != 'admin') {
       header("Location: login.php");
     }
     $site = "gyms";
@@ -36,22 +42,6 @@
       </tbody>
    </table>
   </div>
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
 <?php
     include('bottom.php');

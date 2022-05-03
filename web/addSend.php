@@ -1,17 +1,37 @@
 <?php
     session_start();
-    if ($_SESSION['access'] != 'granted') {
+    $site = "addSend";
+    if (isset($_SESSION['access'])) {
+        if ($_SESSION['access'] == 'granted') {
+            $access = 'granted';
+        }
+    } else {
+        $access = $null;
+    }
+
+    if ($access != 'granted') {
       header("Location: login.php");
     }
     include('top.php');
 
+    $isEdit = null;
+    $edit = null;
+
     $existing_send = null;
-    $edit = $_GET['edit'];
+
+    if (isset($_GET['edit'])) {
+        $edit = $_GET['edit'];
+    } else {
+        $edit = null;
+    }
+
     if (isset($edit) && (is_int(intval($edit)))) {
         $title = "Edit send";
     } else {
         $title = "Register new send";
     }
+
+
 ?>
 <div class="bg-light p-5 rounded">
 <h1><?php echo $title;?></h1>

@@ -1,12 +1,39 @@
 <?php
 	session_start();
-	if ($_SESSION['user_class'] != 'admin') {
+    if (isset($_SESSION['user_class'])) {
+        $user_class = $_SESSION['user_class'];
+    } else {
+        $user_class = null;
+    }
+
+	if ($user_class != 'admin') {
 		header("Location: login.php");
 	}
-    $cragName = $_POST['frmCragName'];
-    $lon = $_POST['frmLon'];
-    $lat = $_POST['frmLat'];
-    $city = $_POST['frmCity'];
+
+    #variable initiation
+    if (isset($_POST['frmCragName'])) {
+        $cragName = $_POST['frmCragName'];
+    } else {
+        $cragName = null;
+    }
+
+    if (isset($_POST['frmLon'])) {
+        $lon = $_POST['frmLon'];
+    } else {
+        $lon = null;
+    }
+
+    if (isset($_POST['frmLat'])) {
+        $lat = $_POST['frmLat'];
+    } else {
+        $lat = null;
+    }
+
+    if (isset($_POST['frmCity'])) {
+        $city = $_POST['frmCity'];
+    } else {
+        $city = null;
+    }
 
     /*
     echo "lon: $lon";

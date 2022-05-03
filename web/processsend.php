@@ -1,23 +1,65 @@
 <?php
 	session_start();
-	if ($_SESSION['access'] != 'granted') {
-		header("Location: login.php");
-	}
+    if (isset($_SESSION['access'])) {
+        if ($_SESSION['access'] == 'granted') {
+            $access = 'granted';
+        }
+    } else {
+        $access = $null;
+    }
+
+    if ($access != 'granted') {
+        header("Location: login.php");
+    }
 
     function validateDate($date, $format = 'Y-m-d H:i:s') {
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
     }
 
-    $user_id = $_SESSION['user_id'];
-    $crag = $_POST['frmCrag'];
-    $date = $_POST['frmDate'];
-    $grade = $_POST['frmGrade'];
-    $style = $_POST['frmStyle'];
-    $send_id = $_POST['frmSendId'];
+    # Variable initiation 
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+    } else {
+        $user_id = null;
+    }
 
-    if($_POST['frmIsEdit'] == "YES") {
-        $isedit = true;
+    if (isset($_POST['frmCrag'])) {
+        $crag = $_POST['frmCrag'];
+    } else {
+        $crag = null;
+    }
+
+    if (isset($_POST['frmDate'])) {
+        $date = $_POST['frmDate'];
+    } else {
+        $date = null;
+    }
+
+    if (isset($_POST['frmGrade'])) {
+        $grade = $_POST['frmGrade'];
+    } else {
+        $grade = null;
+    }
+
+    if (isset($_POST['frmStyle'])) {
+        $style = $_POST['frmStyle'];
+    } else {
+        $style = null;
+    }
+
+    if (isset($_POST['frmSendId'])) {
+        $send_id = $_POST['frmSendId'];
+    } else {
+        $send_id = null;
+    }
+
+    if (isset(($_POST['frmIsEdit']))) {
+        if($_POST['frmIsEdit'] == "YES") {
+            $isedit = true;
+        } else {
+            $isedit = false;
+        }
     } else {
         $isedit = false;
     }

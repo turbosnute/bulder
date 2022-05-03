@@ -1,8 +1,15 @@
 <?php
     session_start();
-    if ($_SESSION['user_class'] != 'admin') {
+    if (isset($_SESSION['user_class'])) {
+      $user_class = $_SESSION['user_class'];
+    } else {
+          $user_class = null;
+    }
+
+    if ($user_class != 'admin') {
       header("Location: login.php");
     }
+    $site = "addCrag";
     include('top.php');
 
     // check if places api key exists.

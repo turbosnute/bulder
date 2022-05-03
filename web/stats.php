@@ -1,6 +1,14 @@
 <?php
     session_start();
-    if ($_SESSION['access'] != 'granted') {
+    if (isset($_SESSION['access'])) {
+      if ($_SESSION['access'] == 'granted') {
+          $access = 'granted';
+      }
+    } else {
+        $access = $null;
+    }
+
+    if ($access != 'granted') {
       header("Location: login.php");
     }
     $site = "stats";
@@ -176,21 +184,6 @@
 <?php
           } # end if send_count > 0
 ?>
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
 <?php
     include('bottom.php');

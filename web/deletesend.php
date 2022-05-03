@@ -1,7 +1,15 @@
 <?php
 	session_start();
-    if ($_SESSION['access'] != 'granted') {
-		header("Location: login.php?msg=notgranted");
+    if (isset($_SESSION['access'])) {
+        if ($_SESSION['access'] == 'granted') {
+            $access = 'granted';
+        }
+    } else {
+        $access = $null;
+    }
+
+    if ($access != 'granted') {
+	  header("Location: login.php?msg=notgranted");
 	}
 
 

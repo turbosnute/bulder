@@ -1,6 +1,12 @@
 <?php
 	session_start();
-	if ($_SESSION['user_class'] != 'admin') {
+    if (isset($_SESSION['user_class'])) {
+		$user_class = $_SESSION['user_class'];
+	} else {
+		$user_class = null;
+	}
+
+	if ($user_class != 'admin') {
 		header("Location: login.php");
 	}
 	include('top.php');
@@ -14,6 +20,8 @@
 // check if table exsists.
 $query = "SHOW TABLES LIKE 'bulder_user';";
 $result = mysqli_query($conn, $query);
+$placeskey = null;
+$gauthkey = null;
 
 if (mysqli_num_rows($result) === 0) {
 	echo "Creating user table...<br />";

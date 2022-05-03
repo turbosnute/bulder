@@ -1,3 +1,17 @@
+<?php
+if (isset($_SESSION['user_name'])) {
+    $user_name = $_SESSION['user_name'];
+} else {
+    $user_name = null;
+}
+
+if (isset($_SESSION['user_class'])) {
+    $user_class = $_SESSION['user_class'];
+} else {
+    $user_class = null;
+}
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,7 +45,7 @@
     
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Bulder</a>
+            <a class="navbar-brand" href="index.php">Bulder</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,7 +58,7 @@
                     <a class="nav-link<?php if ($site == 'stats') { echo ' active';}?>" href="stats.php">Stats</a>
                 </li>
                 <?php
-                if ($_SESSION['user_class'] == 'admin') {
+                if ($user_class == 'admin') {
                 ?>
                 <li class="nav-item">
                 <a class="nav-link<?php if ($site == 'gyms') { echo ' active';}?>" href="crags.php">Gyms</a>
@@ -56,7 +70,7 @@
                 }
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="processlogout.php">Log Out (<?php echo $_SESSION['user_name']; ?>)</a>
+                    <a class="nav-link" href="processlogout.php">Log Out (<?php echo $user_name ?>)</a>
                 </li>
             </ul>
             </div>

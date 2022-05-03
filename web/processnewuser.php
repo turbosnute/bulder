@@ -1,12 +1,39 @@
 <?php
 	session_start();
-	if ($_SESSION['user_class'] != 'admin') {
+    if (isset($_SESSION['user_class'])) {
+        $user_class = $_SESSION['user_class'];
+    } else {
+        $user_class = null;
+    }
+
+	if ($user_class != 'admin') {
 		header("Location: login.php");
 	}
-    $name = $_POST['frmName'];
-    $mail = $_POST['frmMail'];
-    $pw = $_POST['frmPw'];
-    $adm = $_POST['frmAdminUser'];
+
+    #variable initiation
+    if (isset($_POST['frmName'])) {
+        $name = $_POST['frmName'];
+    } else {
+        $name = null;
+    }
+
+    if (isset($_POST['frmMail'])) {
+        $mail = $_POST['frmMail'];
+    } else {
+        $mail = null;
+    }
+
+    if (isset($_POST['frmPw'])) {
+        $pw = $_POST['frmPw'];
+    } else {
+        $pw = null;
+    }
+
+    if (isset($_POST['frmAdminUser'])) {
+        $adm = $_POST['frmAdminUser'];
+    } else {
+        $adm = null;
+    }
 
     if ($adm == 'on') {
         $user_class = 'admin';

@@ -1,7 +1,18 @@
 <?php
     session_start();
-    $pw = $_POST['pw'];
-    $mail = $_POST['mail'];
+
+    # Variable initiation
+    if(isset($_POST['pw'])) {
+        $pw = $_POST['pw'];
+    } else {
+        $pw = null;
+    }
+
+    if(isset($_POST['mail'])) {
+        $mail = $_POST['mail'];
+    } else {
+        $mail = null;
+    }
 
     if (empty($pw) || empty($mail)) {
         header("Location: login.php");
