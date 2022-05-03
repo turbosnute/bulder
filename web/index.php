@@ -45,8 +45,8 @@
         WHERE `user_id` = '$user_id' ORDER BY DATE DESC, send_id ASC;";
 
         $result = mysqli_query($conn, $query);
-
-        if (mysqli_num_rows($result) > 0) {
+        $sendcount = mysqli_num_rows($result);
+        if ($sendcount > 0) {
           ?>
               &nbsp;<a type="button" class="btn btn-secondary" href="exportLog.php">Download CSV</a>
           <?php
@@ -64,7 +64,7 @@
               $day = date("l", strtotime($sendDate));
               echo "<div class=\"row\" style=\"margin-top:25px;\"><div class=\"card\"><div class=\"card-body\"><h4>$day</h4>";
               echo "<i class=\"bi bi-calendar-event\"></i> $sendDate<br />";
-              echo "<i class=\"bi bi-geo-alt\"></i> $gymName<br />";
+              echo "<i class=\"bi bi-geo-alt\"></i> $gymName<br /><br />";
             }
 
             if ($sendStyle == 'flash') {
