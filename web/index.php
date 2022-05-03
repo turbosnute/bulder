@@ -17,7 +17,7 @@
 
   <div class="bg-light p-5 rounded">
   <h1>Logbook</h1>
-  <a class="btn btn-primary" href="addSend.php">Add new send</a> <a type="button" class="btn btn-secondary" href="exportLog.php">Download CSV</a>
+  <a class="btn btn-primary" href="addSend.php">Add new send</a>
       <?php
         $first = true;
         $lastDate = "123";
@@ -37,6 +37,9 @@
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
+          ?>
+              &nbsp;<a type="button" class="btn btn-secondary" href="exportLog.php">Download CSV</a>
+          <?php
           while($row = mysqli_fetch_assoc($result)) {
             $sendDate = $row['date'];
             $sendGrade = $row['grade'];

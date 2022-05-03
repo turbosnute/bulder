@@ -30,7 +30,7 @@
         </div>
         <div class="mb-3">
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="frmAdminUser" name="frmAdminUser" <?php if (isset($_GET['firstuser']) && ((_GET['firstuser'] == 'true'))) { echo "checked"; }?>>
+            <input class="form-check-input" type="checkbox" id="frmAdminUser" name="frmAdminUser" <?php if (isset($_GET['firstuser']) && (($_GET['firstuser'] == 'true'))) { echo "checked"; }?>>
             <label class="form-check-label" for="frmAdminUser">Admin User</label>
           </div>
         </div>
