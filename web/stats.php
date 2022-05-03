@@ -48,7 +48,7 @@
             $sends_in_a_day_date = $row['date'];
 
             # grade stats and favorite grade.
-            $query = "SELECT COUNT(*) AS 'count', `bulder_send`.`grade`, `bulder_grade`.hardness
+            $query = "SELECT COUNT(*) AS 'count', `bulder_send`.`grade`, `bulder_grade`.`hardness`,  `bulder_grade`.`cssclass`, `bulder_grade`.`friendlyname`
                       FROM `bulder_send`
                       INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
                       WHERE `user_id` = '$user_id'
@@ -69,7 +69,8 @@
             foreach ($arr as &$value) {
               $grade = $value['grade'];
               $count = $value['count'];
-              echo "<a class='badge bg-$grade'>$count</a> ";
+              $cssclass = $value['cssclass'];
+              echo "<a class='badge $cssclass'>$count</a> ";
             }
             ?>
 </div>
@@ -85,7 +86,7 @@
 
 
             <?php
-            $favorite_grade = $arr[0]['grade'];
+            $favorite_grade = $arr[0]['friendlyname'];
             $favorite_grade_count = $arr[0]['count'];
 /*
             while($row = mysqli_fetch_assoc($result)) {
@@ -111,24 +112,28 @@
             $favorite_crag_visit_count = $row['times_visited'];
 
             # hardest flash.
-            $query = "SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`, `bulder_crag`.crag_id, `bulder_crag`.name,`bulder_send`.style, `bulder_grade`.`hardness`, `bulder_send`.grade
+            $query = "SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`, `bulder_crag`.crag_id, `bulder_crag`.`name`,`bulder_send`.`style`, `bulder_grade`.`hardness`, `bulder_grade`.`friendlyname`, `bulder_grade`.`cssclass`, `bulder_send`.grade
                       FROM `bulder_send`
                       INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
                       INNER JOIN `bulder`.`bulder_crag` ON `bulder_send`.crag_id = `bulder_crag`.crag_id
                       WHERE `user_id` = '$user_id' AND `bulder_send`.style = 'flash'
                       ORDER BY hardness DESC, DATE ASC
                       LIMIT 1";
+
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
               $row = mysqli_fetch_assoc($result);
               $hardest_flash_crag = $row['name'];
               $hardest_flash_date = $row['date'];
               $hardest_flash_grade = $row['grade'];
+              $hardest_flash_css = $row['cssclass'];
+              $hardest_flash_friendly = $row['friendlyname'];
+
               ?>
 <div class="card mb-3">
       <div class="card-body">
         <p class="text-muted">Hardest Flash</p>
-        <p class="h1"><?php echo ucfirst($hardest_flash_grade); ?></p>
+        <p class="h1"><?php echo $hardest_flash_friendly; ?></p>
 
         <p class="card-text"><small class="text-muted"><i class="bi bi-calendar-event"></i> <?php echo $hardest_flash_date;?><br /><i class="bi bi-geo-alt"></i> <?php echo $hardest_flash_crag;?></small></p>
       </div>
@@ -137,7 +142,7 @@
             }
 
             # hardest send.
-            $query = "SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`, `bulder_crag`.crag_id, `bulder_crag`.name,`bulder_send`.style, `bulder_grade`.`hardness`, `bulder_send`.grade
+            $query = "SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`, `bulder_crag`.crag_id, `bulder_crag`.`name`,`bulder_send`.style, `bulder_grade`.`hardness`, `bulder_grade`.`friendlyname`, `bulder_send`.grade
                       FROM `bulder_send`
                       INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
                       INNER JOIN `bulder`.`bulder_crag` ON `bulder_send`.crag_id = `bulder_crag`.crag_id
@@ -149,6 +154,7 @@
             $hardest_send_crag = $row['name'];
             $hardest_send_date = $row['date'];
             $hardest_send_grade = $row['grade'];
+            $hardest_send_friendly = $row['friendlyname'];
           }
 
           mysqli_close($conn);
@@ -160,7 +166,7 @@
 <div class="card mb-3">
       <div class="card-body">
         <p class="text-muted">Hardest Send</p>
-        <p class="h1"><?php echo ucfirst($hardest_send_grade); ?></p>
+        <p class="h1"><?php echo $hardest_send_friendly; ?></p>
 
         <p class="card-text"><small class="text-muted"><i class="bi bi-calendar-event"></i> <?php echo $hardest_send_date;?><br /><i class="bi bi-geo-alt"></i> <?php echo $hardest_send_crag;?></small></p>
       </div>

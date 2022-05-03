@@ -11,6 +11,13 @@
     if ($access != 'granted') {
       header("Location: login.php");
     }
+
+    if( isset($_SESSION['user_id']) ) {
+      $user_id = $_SESSION['user_id'];
+    } else {
+      $user_id = null;
+    }
+
     $site = "logbook";
     include('top.php');
 ?>
@@ -30,10 +37,13 @@
         `bulder_send`.`terrain`,
         `bulder_send`.`user_id`,
         `bulder_send`.`send_id`,
-        `bulder_crag`.`name`
+        `bulder_crag`.`name`,
+        `bulder_grade`.`cssclass`
         FROM `bulder`.`bulder_send`
         INNER JOIN `bulder`.`bulder_crag` ON `bulder_send`.crag_id = `bulder_crag`.crag_id
-        WHERE `user_id` = '".$_SESSION['user_id']."' ORDER BY DATE DESC, send_id ASC;";
+        INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
+        WHERE `user_id` = '$user_id' ORDER BY DATE DESC, send_id ASC;";
+
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
