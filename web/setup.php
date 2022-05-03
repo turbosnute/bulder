@@ -113,18 +113,20 @@ if (mysqli_num_rows($result) === 0) {
 
 	mysqli_query($conn, $query);
 
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('rainbw', '1', 'Ungraded', 'bg-rainbw');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('yellow', '10', 'Yellow', 'bg-yellow');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('yellowgreen', '11', 'Yellow-Green', 'bg-yellowgreen');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('green', '12', 'Green', 'bg-green');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('greenblue', '13', 'Green-Blue', 'bg-greenblue');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('blue', '14', 'Blue', 'bg-blue');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('bluered', '15', 'Blue-Red', 'bg-bluered');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('red', '16', 'Red', 'bg-red');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('redblack', '17', 'Red-Black', 'bg-redblack');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('black', '18', 'Black', 'bg-black');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('blackwhite', '19', 'Black-White', 'bg-blackwhite');");
-	mysqli_query($conn, "INSERT INTO `bulder`.`bulder_grade` (`grade`, `hardness`, `friendlyname`,  `cssclass`) VALUES ('white', '20', 'White', 'bg-white');");
+	$query = "INSERT INTO `bulder_grade` (`grade`, `hardness`, `friendlyname`, `cssclass`) VALUES
+	('black', 18, 'Black', 'bg-black'),
+	('blackwhite', 19, 'Black-White', 'bg-blackwhite'),
+	('blue', 14, 'Blue', 'bg-blue'),
+	('bluered', 15, 'Blue-Red', 'bg-bluered'),
+	('green', 12, 'Green', 'bg-green'),
+	('greenblue', 13, 'Green-Blue', 'bg-greenblue'),
+	('rainbw', 1, 'Ungraded', 'bg-rainbw'),
+	('red', 16, 'Red', 'bg-red'),
+	('redblack', 17, 'Red-Black', 'bg-redblack'),
+	('white', 20, 'White', 'bg-white'),
+	('yellow', 10, 'Yellow', 'bg-yellow'),
+	('yellowgreen', 11, 'Yellow-Green', 'bg-yellowgreen');";
+	mysqli_query($conn, $query);
 }
 
 
