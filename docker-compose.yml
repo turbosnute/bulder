@@ -8,6 +8,10 @@ services:
       - backend
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_520_ci
     environment:
+      - MYSQL_ROOT_PASSWORD=asijsadijodaijodsai
+      - MYSQL_DATABASE=bulder
+      - MYSQL_USER=budlderuser
+      - MYSQL_PASSWORD=fdopakakpofsap    
       - MARIADB_ROOT_PASSWORD=asijsadijodaijodsai
       - MARIADB_DATABASE=bulder
       - MARIADB_USER=budlderuser
