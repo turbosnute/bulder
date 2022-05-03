@@ -94,7 +94,7 @@
             }
 */
             # favorite gym.
-            $query = "SELECT `derp`.`name`, `derp`.`city`, COUNT(`derp`.`crag_id`) AS 'times_visited' FROM (
+            $query = "SELECT `derp`.`name`, `derp`.`crag_id`, `derp`.`city`, COUNT(`derp`.`crag_id`) AS 'times_visited' FROM (
               SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`,`bulder_crag`.`name`,`bulder_crag`.`city`
               FROM `bulder_send`
               INNER JOIN `bulder`.`bulder_crag` ON `bulder_send`.crag_id = `bulder_crag`.crag_id
@@ -108,8 +108,16 @@
             $result = mysqli_query($conn, $query);
             $row = mysqli_fetch_assoc($result);
             $favorite_crag_name = $row['name'];
+            $favorite_crag_id = $row['crag_id'];
             $favorite_crag_city = $row['city'];
             $favorite_crag_visit_count = $row['times_visited'];
+            
+            $query = "SELECT COUNT(`crag_id`) AS 'count'
+                      FROM `bulder_send`
+                      WHERE `user_id` = '$user_id' AND `crag_id` = '$favorite_crag_id'";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            $favorite_crag_logs = $row['count'];
 
             # hardest flash.
             $query = "SELECT `bulder_send`.`crag_id`, `bulder_send`.`date`, `bulder_crag`.crag_id, `bulder_crag`.`name`,`bulder_send`.`style`, `bulder_grade`.`hardness`, `bulder_grade`.`friendlyname`, `bulder_grade`.`cssclass`, `bulder_send`.grade
@@ -184,7 +192,13 @@
         <p class="text-muted">Favorite Gym</p>
         <p class="h1"><?php echo $favorite_crag_name; ?></p>
         
-        <p class="card-text"><small class="text-muted"><i class="bi bi-bicycle"></i> <?php echo "Visited $favorite_crag_visit_count times";?><br /><i class="bi bi-geo-alt"></i> <?php echo $favorite_crag_city;?></small></p>
+        <p class="card-text">
+          <small class="text-muted">
+          <i class="bi bi-geo-alt"></i> <?php echo $favorite_crag_city;?>
+            <br /><i class="bi bi-bicycle"></i> <?php echo "Visited $favorite_crag_visit_count times";?>
+            <br /><i class="bi bi-card-checklist"></i> <?php echo "$favorite_crag_logs send logged";?>
+          </small>
+        </p>
       </div>
 </div>
 <?php
