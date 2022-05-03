@@ -19,6 +19,6 @@ Apache, PHP, MariaDB and Bootstrap.
 * users.php should have edit/delete?
 * iso dates shold be replaced with nicer dates, maybe locale js stuff.
 * sends: terrain: slab/vert/overhang (?).
-* google auth.
+* google auth. (https://code.tutsplus.com/tutorials/create-a-google-login-page-in-php--cms-33214)
 * change locale on calendar so weeks start on monday.
 * diary (https://stackoverflow.com/questions/66624190/how-to-create-in-php-a-full-year-table-html).
