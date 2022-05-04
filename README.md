@@ -13,6 +13,7 @@ Apache, PHP, MariaDB and Bootstrap.
 
 ## Needs fixing
 * salt local users md5 hashes
+* google logo should be delivered from the local server.
 * favicon+logo?
 * send-count on logbook page.
 * add send buttons should be fetched from db to make it possible to change grading systems in the future.
@@ -23,7 +24,6 @@ Apache, PHP, MariaDB and Bootstrap.
 * sends: terrain: slab/vert/overhang (?).
 * Download logbook to csv.
 * google auth.
-* grades should have friendlyname (Blue-Red instead of bluered)
 * change locale on calendar so weeks start on monday.
 * Update ER-diagram.
 * diary (https://stackoverflow.com/questions/66624190/how-to-create-in-php-a-full-year-table-html).
