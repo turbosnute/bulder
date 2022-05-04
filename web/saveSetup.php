@@ -9,16 +9,30 @@
 	if ($user_class != 'admin') {
 		header("Location: login.php");
 	}
-    $placesKey = $_POST['frmPlacesKey'];
-    $googleAuthKey = $_POST['frmGoogleAuthKey'];
+
+
+    //$placesKey = $_POST['frmPlacesKey'];
+    $placesKey = !empty($_POST['frmPlacesKey'])?$_POST['frmPlacesKey']:''; 
+    $gauth_client_id = !empty($_POST['frmGoogleAuthClientId'])?$_POST['frmGoogleAuthClientId']:'';
+    $gauth_client_secret = !empty($_POST['frmGoogleAuthClientSecret'])?$_POST['frmGoogleAuthClientSecret']:'';
+    $gauth_client_redirect_uri = !empty($_POST['frmGoogleAuthRedirectUri'])?$_POST['frmGoogleAuthRedirectUri']:'';
 
     include('dbconfig.php');
 
     $sanitized_placesKey = mysqli_real_escape_string($conn, $placesKey);
-    $sanitized_googleAuthKey = mysqli_real_escape_string($conn, $googleAuthKey);
+    $sanitized_gauth_client_id = mysqli_real_escape_string($conn, $gauth_client_id);
+    $sanitized_gauth_client_secret = mysqli_real_escape_string($conn, $gauth_client_secret);
+    $sanitized_redirect_uri = mysqli_real_escape_string($conn, $gauth_client_redirect_uri);
+    
 
-    #$query = "INSERT INTO `bulder`.`bulder_crag` (`name`, `lon`, `lat`, `city`) VALUES ('$sanitized_name', '$sanitized_lon', '$sanitized_lat', '$sanitized_city');";
-    $query = "INSERT INTO `bulder`.`bulder_setting` (`setting`, `value`) VALUES ('placeskey', '$sanitized_placesKey') ON DUPLICATE KEY UPDATE VALUE = '$sanitized_placesKey';";
+
+    $query = "INSERT INTO `bulder`.`bulder_setting` (`setting`, `value`)
+    VALUES ('placeskey', '$sanitized_placesKey'),
+    ('gauth_client_id', '$sanitized_gauth_client_id'),
+    ('gauth_client_secret', '$sanitized_gauth_client_secret'),
+    ('gauth_redirect_uri', '$sanitized_redirect_uri')
+    ON DUPLICATE KEY UPDATE VALUE = VALUES(value)
+    ;";
 
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);

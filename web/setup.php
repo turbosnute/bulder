@@ -145,6 +145,10 @@ if (mysqli_num_rows($result) === 0) {
 	";
 	
 	mysqli_query($conn, $query);
+
+	$query = "INSERT INTO `bulder`.`bulder_setting` (`setting`, `value`) VALUES ('gauth_redirect_uri', 'http://localhost:7000/login.php');";
+	mysqli_query($conn, $query);
+	
 } else {
 	// sjekk om api keys finnes, hvis ikke opprett dem.
 	$query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'placeskey' LIMIT 1;";
@@ -157,28 +161,55 @@ if (mysqli_num_rows($result) === 0) {
 		$placeskey = "";
 	}
 
-	$query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'gauthkey' LIMIT 1;";
+	$query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'gauth_client_id' LIMIT 1;";
 	$result = mysqli_query($conn, $query);
 	if (mysqli_num_rows($result) != 0) {
 		$row = mysqli_fetch_assoc($result);
-		$gauthkey = $row['value'];
+		$gauth_client_id = $row['value'];
 	} else {
-		$gauthkey = "";
+		$gauth_client_id = "";
+	}
+
+	$query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'gauth_client_secret' LIMIT 1;";
+	$result = mysqli_query($conn, $query);
+	if (mysqli_num_rows($result) != 0) {
+		$row = mysqli_fetch_assoc($result);
+		$gauth_client_secret = $row['value'];
+	} else {
+		$gauth_client_secret = "";
+	}
+	
+	$query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'gauth_redirect_uri' LIMIT 1;";
+	$result = mysqli_query($conn, $query);
+	if (mysqli_num_rows($result) != 0) {
+		$row = mysqli_fetch_assoc($result);
+		$gauth_redirect_uri = $row['value'];
+	} else {
+		$gauth_redirect_uri = "http://localhost:7000/login.php";
 	}
 }
 mysqli_close($conn);
 
 
 ?>
-
+<h3>Google Places</h3>
 <form action="saveSetup.php" method="post">
         <div class="mb-3">
             <label for="frmPlacesKey" class="form-label">Google Maps Places API key (leave blank if you don't want to use places)</label>
             <input type="text" class="form-control" name="frmPlacesKey" id="frmPlacesKey" value="<?php echo $placeskey; ?>">
         </div>
+		<h3>Google Authentication</h3>
         <div class="mb-3">
-            <label for="frmGoogleAuthKey" class="form-label">Google oAuth API key (leave blank if you don't want to use Google Auth)</label>
-            <input type="text" class="form-control" name="frmGoogleAuthKey" id="frmGoogleAuthKey" value="<?php echo $gauthkey; ?>">
+            <label for="frmGoogleAuthClientId" class="form-label">Client ID</label>
+            <input type="text" class="form-control" name="frmGoogleAuthClientId" id="frmGoogleAuthClientId" value="<?php echo $gauth_client_id; ?>">
+        </div>
+        <div class="mb-3">
+            <label for="frmGoogleAuthClientSecret" class="form-label">Client Secret</label>
+            <input type="text" class="form-control" name="frmGoogleAuthClientSecret" id="frmGoogleAuthClientSecret" value="<?php echo $gauth_client_secret; ?>">
+        </div>
+        <div class="mb-3">
+            <label for="frmGoogleAuthRedirectUri" class="form-label">Redirect Uri</label>
+            <input type="text" class="form-control" name="frmGoogleAuthRedirectUri" id="frmGoogleAuthRedirectUri" value="<?php echo $gauth_redirect_uri; ?>">
         </div>
 		<div class="mb-3">
             <input class="btn btn-primary" type="submit" value="Save">
