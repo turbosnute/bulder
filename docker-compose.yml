@@ -2,11 +2,11 @@ version: "3"
 services:
   bulder-db:
     hostname: bulder-db
-    image: mariadb:latest
+    image: lscr.io/linuxserver/mariadb:latest
     container_name: bulder-db
     networks:
       - backend
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_520_ci
+    #command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_520_ci
     environment:
       - MYSQL_ROOT_PASSWORD=asijsadijodaijodsai
       - MYSQL_DATABASE=bulder
