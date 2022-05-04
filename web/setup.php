@@ -16,6 +16,11 @@
     <h1>Setup</h1>
 <?php
 
+// var init
+$gauth_client_id = '';
+$gauth_client_secret = '';
+$gauth_redirect_uri = '';
+
 // check if db connection is ok.
 // check if table exsists.
 $query = "SHOW TABLES LIKE 'bulder_user';";
@@ -32,6 +37,7 @@ if (mysqli_num_rows($result) === 0) {
 		`lastcrag_id` INT NOT NULL DEFAULT 0,
 		`password` VARCHAR(128) NOT NULL DEFAULT '',
 		`user_class` VARCHAR(10) NOT NULL DEFAULT 'user',
+		`picture` VARCHAR(200) NULL DEFAULT ''
 		PRIMARY KEY (`user_id`)
 	)
 	COLLATE='utf8mb4_unicode_520_ci'
