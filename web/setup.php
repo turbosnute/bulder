@@ -37,12 +37,11 @@ if (mysqli_num_rows($result) === 0) {
 		`lastcrag_id` INT NOT NULL DEFAULT 0,
 		`password` VARCHAR(128) NOT NULL DEFAULT '',
 		`user_class` VARCHAR(10) NOT NULL DEFAULT 'user',
-		`picture` VARCHAR(200) NULL DEFAULT ''
+		`picture` VARCHAR(200) NOT NULL DEFAULT '',
 		PRIMARY KEY (`user_id`)
 	)
 	COLLATE='utf8mb4_unicode_520_ci'
 	;";
-
 	mysqli_query($conn, $query);
 } 
 
@@ -154,7 +153,7 @@ if (mysqli_num_rows($result) === 0) {
 
 	$query = "INSERT INTO `bulder`.`bulder_setting` (`setting`, `value`) VALUES ('gauth_redirect_uri', 'http://localhost:7000/login.php');";
 	mysqli_query($conn, $query);
-	
+
 } else {
 	// sjekk om api keys finnes, hvis ikke opprett dem.
 	$query = "SELECT * FROM `bulder`.`bulder_setting` WHERE setting = 'placeskey' LIMIT 1;";
