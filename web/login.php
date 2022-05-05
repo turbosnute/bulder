@@ -9,7 +9,7 @@
       if (isset($_GET['code'])) { 
         $client->authenticate($_GET['code']); 
         $_SESSION['token'] = $client->getAccessToken(); 
-        header('Location: ' . filter_var($redirectUri, FILTER_SANITIZE_URL)); 
+        header('Location: ' . filter_var($redirectUri, FILTER_SANITIZE_URL));
       }
       
       if (isset($_SESSION['token'])) { 
@@ -41,6 +41,7 @@
           $_SESSION['user_name'] = $row['name'];
           $_SESSION['user_id'] = $row['user_id'];
           $_SESSION['user_class'] = $row['user_class'];
+          $_SESSION['picture'] = $row['picture'];
         } else {
           // Create user if it doesn't exist here.
           $query = "INSERT INTO `bulder`.`bulder_user` (`name`, `email`, `user_class`, `picture`) VALUES ('$name', '$email', 'user', '$picture');";
@@ -52,7 +53,7 @@
           $_SESSION['user_name'] = $row['name'];
           $_SESSION['user_id'] = $row['user_id'];
           $_SESSION['user_class'] = $row['user_class'];
-          $_SESSION['$picture'] = $row['picture'];
+          $_SESSION['picture'] = $row['picture'];
         }
 
         header("Location: index.php");

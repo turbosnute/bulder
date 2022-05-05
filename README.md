@@ -12,6 +12,7 @@ Apache, PHP, MariaDB and Bootstrap.
 * Google Maps Places API.
 
 ## Needs fixing
+* number of sends logged on favorite gym is not correct.
 * salt local users md5 hashes
 * google logo should be delivered from the local server.
 * favicon+logo?
