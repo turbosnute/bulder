@@ -193,3 +193,8 @@ body {
     background: rgb(255,214,0);
     background: linear-gradient(90deg, rgba(255,214,0,1) 0%, var(--green) 20%, var(--blue) 40%, rgba(246,40,40,1) 60%, rgba(0,0,0,1) 80%, rgba(255,255,255,1) 100%);
 }
+
+.metatext {
+    font-size: 0.80rem;
+    color: #6c757d !important 
+}

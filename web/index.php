@@ -81,9 +81,9 @@
 
               $day = date("l", strtotime($sendDate));
               echo "<div class=\"row\" style=\"margin-top:25px;\"><div class=\"card\"><div class=\"card-body\"><h4>$day</h4>";
-              echo "<i class=\"bi bi-calendar-event\"></i> $sendDate<br />";
+              echo "<div class='metatext'><i class=\"bi bi-calendar-event\"></i> $sendDate<br />";
               echo "<i class=\"bi bi-geo-alt\"></i> $gymName<br />";
-              echo "<i class=\"bi bi-card-checklist\"></i> <span id='$climbing_session_id'></span><br /><br />";
+              echo "<i class=\"bi bi-card-checklist\"></i> <span id='$climbing_session_id'></span></div>";
             }
 
             if ($sendStyle == 'flash') {
@@ -120,7 +120,7 @@
               var split = e.split(',');
               var id = split[0];
               var num = split[1];
-              document.getElementById(id).innerText = num + " sends logged.";
+              document.getElementById(id).innerText = num + " sends logged";
           });
           <?php
           echo "</script>";
