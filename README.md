@@ -12,9 +12,7 @@ Apache, PHP, MariaDB and Bootstrap.
 * Google Maps Places API.
 
 ## Needs fixing
-* number of sends logged on favorite gym is not correct.
-* salt local users md5 hashes
-* google logo should be delivered from the local server.
+* salt local users md5 hashes for local users
 * favicon+logo?
 * send-count on logbook page.
 * add send buttons should be fetched from db to make it possible to change grading systems in the future.
@@ -24,7 +22,6 @@ Apache, PHP, MariaDB and Bootstrap.
 * iso dates shold be replaced with nicer dates, maybe locale js stuff.
 * sends: terrain: slab/vert/overhang (?).
 * Download logbook to csv.
-* google auth.
 * change locale on calendar so weeks start on monday.
 * Update ER-diagram.
 * diary (https://stackoverflow.com/questions/66624190/how-to-create-in-php-a-full-year-table-html).

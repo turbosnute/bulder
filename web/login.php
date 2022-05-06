@@ -25,6 +25,7 @@
         $email = !empty($userinfo['email'])?$userinfo['email']:'';
         $picture = !empty($userinfo['picture'])?$userinfo['picture']:'';
 
+        //print_r($userinfo);
         $_SESSION['mail'] = $email;
         $_SESSION['user_name'] = $name;
         $_SESSION['picture'] = $picture;
@@ -36,7 +37,20 @@
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
+          // User exists in DB
           $row = mysqli_fetch_assoc($result);
+
+          $picFromDb = !empty($row['picture'])?$row['picture']:'';
+          $nameFromDb = !empty($row['picture'])?$row['picture']:'';
+
+          if (($picFromDb != $picture) || ($nameFromDb != $name)) { //user data from google is newer than user data in db.
+            // update db
+            $query = "UPDATE `bulder_user`
+                      SET `picture`='$picture', `name`='$name'
+                      WHERE `email` = '$email';";
+            $result = mysqli_query($conn, $query);
+          }
+
           $_SESSION['access'] = 'granted';
           $_SESSION['user_name'] = $row['name'];
           $_SESSION['user_id'] = $row['user_id'];
@@ -65,7 +79,7 @@
         $login_image = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'">
         <img src="images/google-sign-in-btn.png" alt=""/></a>';
         
-        $googleLink = "<a style=\"margin-top:10px;\"class=\"w-100 btn btn-lg btn-light\" type=\"submit\" href=\"".filter_var($authUrl, FILTER_SANITIZE_URL)."\"><img src=\"https://img.icons8.com/color/16/000000/google-logo.png\"> Sign in with Google</a>";
+        $googleLink = "<a style=\"margin-top:10px;\"class=\"w-100 btn btn-lg btn-light\" type=\"submit\" href=\"".filter_var($authUrl, FILTER_SANITIZE_URL)."\"><img src=\"googlogo.png\"> Sign in with Google</a>";
 
       
       } 
