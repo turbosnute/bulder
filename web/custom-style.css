@@ -23,6 +23,7 @@ body {
 }
 .btn-c {
     color:#fff !important;
+    min-width: 70px;
 }
 
 .btn-c:hover {

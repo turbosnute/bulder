@@ -1,11 +1,9 @@
 <?php
     session_start();
     if (isset($_SESSION['user_class'])) {
-      if ($_SESSION['user_class'] == 'admin') {
-          $user_class = 'admin';
-      }
+      $user_class = $_SESSION['user_class'];
     } else {
-        $user_class = null;
+          $user_class = null;
     }
 
     if ($user_class != 'admin') {
@@ -18,22 +16,30 @@
   <div class="bg-light p-5 rounded">
     <h1>Users</h1>
     <a class="btn btn-primary" href="addUser.php">Add new user</a>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">User Class</th>
-        </tr>
-      </thead>
-      <tbody>
+    <hr />
         <?php
           include "dbconfig.php";
           $query = "SELECT * FROM `bulder`.`bulder_user`;";
           $result = mysqli_query($conn, $query);
           if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
-              echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td><td>".$row['user_class']."</tr>";
+              $userpic = !empty($row['picture'])?$row['picture']:'user.png';
+
+              //echo "<tr><td>".$row["name"]."</td><td>".$row["email"]."</td><td>".$row['user_class']."</tr>";
+              ?>
+              <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-3">
+                  <img src="<?php echo $userpic; ?>" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $row["name"]; ?></h5>
+                    <p class="card-text"><strong>Mail: </strong><?php echo $row['email']; ?><br /><strong>User Class: </strong><?php echo $row['user_class'] ?></p>                  </div>
+                </div>
+              </div>
+            </div>
+            <?php
             }
           } else {
             echo "<tr><td colspan='3'>No users found</td></tr>";
@@ -41,9 +47,10 @@
           mysqli_close($conn);
         ?>
         
-      </tbody>
-   </table>
-  </div>
+
+
+
+</div>
 
 <?php
     include('bottom.php');

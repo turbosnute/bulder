@@ -20,9 +20,6 @@
 
     $site = "logbook";
     include('top.php');
-
-    $climbing_session_id = '';
-
 ?>
 
   <div class="bg-light p-5 rounded">
@@ -53,37 +50,21 @@
           ?>
               &nbsp;<a type="button" class="btn btn-secondary" href="exportLog.php">Download CSV</a>
           <?php
-          $climbing_session_id_array = array();
-          $count = 0;
-          $i = 0;
-          
           while($row = mysqli_fetch_assoc($result)) {
             $sendDate = $row['date'];
             $sendGrade = $row['grade'];
             $sendStyle = $row['style'];
             $send_id = $row['send_id'];
             $gymName = $row['name'];
-            $climbing_session_card = "";
 
             if (($lastDate != $sendDate) || ($gymName != $lastGym)) {
-              
               $lastDate = $sendDate;
               $lastGym = $gymName;
-              $last_climbing_session_id = $climbing_session_id;
-              $climbing_session_id = uniqid();
-
-              if (!$first) {
-                array_push($climbing_session_id_array, "$last_climbing_session_id,$count");
-                $count = 0;
-                echo "</div></div></div>";
-              }
-
-
+              if (!$first) { echo "</div></div></div>"; }
               $day = date("l", strtotime($sendDate));
               echo "<div class=\"row\" style=\"margin-top:25px;\"><div class=\"card\"><div class=\"card-body\"><h4>$day</h4>";
               echo "<i class=\"bi bi-calendar-event\"></i> $sendDate<br />";
-              echo "<i class=\"bi bi-geo-alt\"></i> $gymName<br />";
-              echo "<i class=\"bi bi-card-checklist\"></i> <span id='$climbing_session_id'></span><br /><br />";
+              echo "<i class=\"bi bi-geo-alt\"></i> $gymName<br /><br />";
             }
 
             if ($sendStyle == 'flash') {
@@ -96,35 +77,12 @@
 
             echo "<a class='btn-c badge bg-$sendGrade' href='addSend.php?edit=".$send_id."' style='color:#FFF;'>$icon $sendStyle</a> ";
             //echo '<i class="bi-github" role="img" aria-label="GitHub"></i>';
-            $count++;
-            
             $first = false;
-            $i++;
           }
-          array_push($climbing_session_id_array, "$climbing_session_id,$count");
-          //$climbing_session_id = uniqid();
-          //array_push($climbing_session_id_array, "$last_climbing_session_id,$count");
-
-          $jsArray = 'var sess_ids = ["' . implode('", "', $climbing_session_id_array) . '"];';
         } else {
-          echo "<p>No sends found</p>";
+          echo "<p><td colspan='3'>No sends found</td></p>";
         }
         mysqli_close($conn);
-
-        if ($sendcount > 0) {
-          echo "<script>";
-          echo $jsArray;
-          ?>
-          sess_ids.forEach(function(e, i) {
-              console.log('[' + i + '] : ' + e);
-              var split = e.split(',');
-              var id = split[0];
-              var num = split[1];
-              document.getElementById(id).innerText = num + " sends logged.";
-          });
-          <?php
-          echo "</script>";
-        }
       ?>
 
 <?php
