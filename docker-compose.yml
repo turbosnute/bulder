@@ -20,6 +20,26 @@ services:
       - 3306:3306
     volumes:
       - bulder-db:/var/lib/mysql
+  bulder-dbbackuper:
+    hostname: bulder-dbbackuper
+    build:
+      context: .
+      dockerfile: dbbackuper/Dockerfile
+    container_name: bulder-dbbackuper
+    networks:
+      - backend
+    depends_on:
+      - bulder-db
+    volumes:
+      - ./dbbackuper/bin/crontab:/var/spool/cron/crontabs/root
+      - ./dbbackuper/bin/backup:/usr/local/bin/backup
+      - ./backup:/backup
+    command: ["-l", "8", "-d", "8"]
+    environment:
+      MYSQL_HOST: bulder-db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: asijsadijodaijodsai
+      MYSQL_DATABASE: bulder
   bulder-web:
     hostname: bulder-web
     build:
@@ -35,6 +55,7 @@ services:
       - ./web/:/var/www/html
     ports:
       - 7000:80
+
 
 networks:
   backend:
