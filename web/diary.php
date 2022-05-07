@@ -1,10 +1,37 @@
+<?php
+    session_start();
+    if (isset($_SESSION['access'])) {
+      if ($_SESSION['access'] == 'granted') {
+          $access = 'granted';
+      }
+    } else {
+        $access = null;
+    }
+
+    if ($access != 'granted') {
+      header("Location: login.php");
+    }
+
+    if( isset($_SESSION['user_id']) ) {
+      $user_id = $_SESSION['user_id'];
+    } else {
+      $user_id = null;
+    }
+
+    $site = "diary";
+    include('top.php');
+?>
+  <div class="bg-light p-5 rounded">
+    <h1>Bouldering Diary</h1>
 <style>
-       table {
+    table {
         border-collapse: collapse;
+        font-size: 0.80rem;
+        /* margin: 0 auto; */
     }
     td {
         border: 1px solid #111;
-        padding: 5px;
+        padding: 2px;
         text-align: center;
     }
     tr {
@@ -20,17 +47,33 @@
         background: #aaa;
     }
 
-    .day.highlightYellow {
-        background: #ff6;
-    }
     .day.highlightGreen {
-        background: #2f7;
+        background: #43db2c;
     }
 
 </style>
 
 <?php
-$year = 2021;
+
+$currentYear = date('Y');
+//echo "<strong>".date("Y-m-d", strtotime("2011-1-7"))."</strong>";
+$haystack = array(); // all unique dates from the current user within the same year.
+//in_array(mixed $needle, array $haystack
+include "dbconfig.php";
+$query = "SELECT DISTINCT `bulder_send`.`date`
+          FROM `bulder_send`
+          WHERE `user_id` = '".$_SESSION['user_id']."' AND YEAR(`date`) IN ($currentYear)";
+
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) > 0) {
+  while($row = mysqli_fetch_assoc($result)) {
+    array_push($haystack,$row['date']);
+  }
+}
+mysqli_close($conn);
+
+$year = $currentYear;
 
 $headings = ["Su", "Mo","Tu","We","Th","Fr", "Sa"];
 
@@ -68,19 +111,22 @@ for ($month = 1; $month <= 12; $month++) {
     // Output the individual days
     for ($day = 1; $day <= 37  - $offset; $day++) {
         $dayNumber      = ($day <= $daysInMonth) ? $day : "";
+        
+        //echo "$day $month $year<br />";
+        $processingDate = date("Y-m-d", strtotime("$year-$month-$dayNumber"));
 
         // Logic here is random to simulate data from the DB
         // you would need to alter to do checks against the DB etc.
-        $highlightClass = (
-            !(random_int(1, 100) % 15) && $dayNumber
-                ? "highlightYellow"
-                : (
-                    !(random_int(1, 100) % 35) && $dayNumber ? "highlightGreen" : ""
-                )
-            );
+        if (in_array($processingDate, $haystack)) {
+            $highlightClass = 'highlightGreen';
+        } else {
+            $highlightClass = '';
+        }
         echo "<td class='day {$highlightClass}'>{$dayNumber}</td>";
     }
     echo "</tr>";
 }
-echo "</table>";
+echo "</table></div>";
+
+include('bottom.php');
 ?>

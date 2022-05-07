@@ -66,6 +66,9 @@ if (isset($_SESSION['user_class'])) {
                 <a class="nav-link<?php if ($site == 'logbook') { echo ' active';}?>" aria-current="page" href="index.php">Logbook</a>
                 </li>
                 <li class="nav-item">
+                <a class="nav-link<?php if ($site == 'diary') { echo ' active';}?>" aria-current="page" href="diary.php">Diary</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link<?php if ($site == 'stats') { echo ' active';}?>" href="stats.php">Stats</a>
                 </li>
                 <?php
