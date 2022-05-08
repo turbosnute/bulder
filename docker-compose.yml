@@ -23,18 +23,17 @@ services:
   bulder-dbbackuper:
     hostname: bulder-dbbackuper
     build:
-      context: .
-      dockerfile: dbbackuper/Dockerfile
+      context: ./dbbackuper
+      dockerfile: Dockerfile
     container_name: bulder-dbbackuper
     networks:
       - backend
     depends_on:
       - bulder-db
     volumes:
-      - ./dbbackuper/bin/crontab:/var/spool/cron/crontabs/root
+      - ./dbbackuper/bin/jobber:/home/jobberuser/.jobber
       - ./dbbackuper/bin/backup:/usr/local/bin/backup
       - ./backup:/backup
-    command: ["-l", "8", "-d", "8"]
     environment:
       MYSQL_HOST: bulder-db
       MYSQL_USER: root

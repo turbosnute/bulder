@@ -1,0 +1,4 @@
+[jobs]
+- name: DatabaseBackup
+  cmd: /usr/local/bin/backup
+  time: '0 0 5 * * *'

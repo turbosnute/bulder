@@ -1,3 +1,4 @@
-FROM alpine:3.15.4
+FROM jobber
+USER root
 RUN apk add --no-cache mysql-client
-ENTRYPOINT ["crond", "-f"]
+USER jobberuser
