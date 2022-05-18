@@ -1,4 +1,4 @@
-FROM jobber
-USER root
+FROM alpine:3.15.4
+COPY app.sh /app/app.sh
 RUN apk add --no-cache mysql-client
-USER jobberuser
+CMD /app/app.sh

@@ -31,8 +31,7 @@ services:
     depends_on:
       - bulder-db
     volumes:
-      - ./dbbackuper/bin/jobber:/home/jobberuser/.jobber
-      - ./dbbackuper/bin/backup:/usr/local/bin/backup
+      - ./dbbackuper/backup.sh:/app/backup.sh
       - ./backup:/backup
     environment:
       MYSQL_HOST: bulder-db
