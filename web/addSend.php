@@ -132,13 +132,25 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Style</label><br />
-        <input type="radio" class="btn-check" name="frmStyle" id="send" value="send" autocomplete="off"<?php if ($selectedstyle == 'send') { echo " checked";}?>>
-        <label class="btn btn-secondary" for="send">Send</label>
-        <input type="radio" class="btn-check" name="frmStyle" id="flash" value="flash" autocomplete="off"<?php if ($selectedstyle == 'flash') { echo " checked";}?>>
-        <label class="btn btn-secondary" for="flash">Flash!</label>
-        <input type="radio" class="btn-check" name="frmStyle" id="repeat" value="repeat" autocomplete="off"<?php if ($selectedstyle == 'repeat') { echo " checked";}?>>
-        <label class="btn btn-secondary" for="repeat">Repeat</label>
+        <div class="row">
+            <label class="form-label">Style</label>
+        </div>
+
+        <div class="row">
+            <div class="col-md-auto">
+                <input type="radio" class="btn-check" name="frmStyle" id="send" value="send" autocomplete="off"<?php if ($selectedstyle == 'send') { echo " checked";}?>>
+                <label class="btn btn-secondary" for="send">Send</label>
+            </div>
+            <div class="col-md-auto">
+                <input type="radio" class="btn-check" name="frmStyle" id="flash" value="flash" autocomplete="off"<?php if ($selectedstyle == 'flash') { echo " checked";}?>>
+                <label class="btn btn-secondary" for="flash">Flash!</label>
+            </div>
+            <div class="col-md-auto">
+                <input type="radio" class="btn-check" name="frmStyle" id="repeat" value="repeat" autocomplete="off"<?php if ($selectedstyle == 'repeat') { echo " checked";}?>>
+                <label class="btn btn-secondary" for="repeat">Repeat</label>
+            </div>
+        </div>
+
     </div>
     <input type="hidden" id="frmIsEdit" name="frmIsEdit" value="<?php echo $isEdit; ?>">
     <input type="hidden" id="frmSendId" name="frmSendId" value="<?php echo $send_id; ?>">
