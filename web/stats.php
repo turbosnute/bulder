@@ -27,18 +27,39 @@
 
           if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            $send_count = $row['count'];
+            $climb_count = $row['count'];
           } else {
-            $send_count = 0;
+            $climb_count = 0;
           }
 
-          if ($send_count == 0) {
+          if ($climb_count == 0) {
             echo "Register more sends to see statistics.";
           } else {
-            # Most number of sends in a day 
+            $query = "SELECT COUNT(send_id) AS 'count' FROM `bulder_send` WHERE `user_id` = '$user_id' AND `style` != 'repeat' LIMIT 1";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0) {
+              $row = mysqli_fetch_assoc($result);
+              $send_count = $row['count'];
+            } else {
+              $send_count = 0;
+            }
+
+            # Most number of climbs in a day 
             $query = "SELECT `bulder_send`.`date`,COUNT(`date`) AS 'count'
                       FROM `bulder_send`
                       WHERE `user_id` = '$user_id'
+                      GROUP BY `date`
+                      ORDER BY `count` DESC
+                      LIMIT 1";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            $climbs_in_a_day_record = $row['count'];
+            $climbs_in_a_day_date = $row['date'];
+
+            # Most number of sends in a day 
+            $query = "SELECT `bulder_send`.`date`,COUNT(`date`) AS 'count'
+                      FROM `bulder_send`
+                      WHERE `user_id` = '$user_id' AND `style` != 'repeat'
                       GROUP BY `date`
                       ORDER BY `count` DESC
                       LIMIT 1";
@@ -62,8 +83,8 @@
             ?>
             <div class="card mb-3">
             <div class="card-body">
-            <p class="text-muted">Number of sends logged</p>
-            <p class="h1"><?php echo "$send_count"; ?></p>
+            <p class="text-muted">Number of climbs logged<br /><span class="metatext">Flashes, sends and repeats.</span></p>
+            <p class="h1"><?php echo "$climb_count"; ?></p>
 
             <?php
             foreach ($arr as &$value) {
@@ -72,14 +93,38 @@
               $cssclass = $value['cssclass'];
               echo "<a class='badge $cssclass'>$count</a> ";
             }
+
+            $query = "SELECT COUNT(*) AS 'count', `bulder_send`.`grade`, `bulder_send`.`style`, `bulder_grade`.`hardness`,  `bulder_grade`.`cssclass`, `bulder_grade`.`friendlyname`
+            FROM `bulder_send`
+            INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
+            WHERE `user_id` = '$user_id' AND `style` != 'repeat'
+            GROUP BY `grade`
+            ORDER BY `count` DESC";
+
+            $result = mysqli_query($conn, $query);
+            $sendarr = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            $sendusersendcount = array_sum(array_column($sendarr,'count'));
             ?>
+            <p class="text-muted"><br />Number of sends logged<br /><span class="metatext">Only flashes and sends</span></p>
+            <p class="h1"><?php echo "$send_count"; ?></p>
+            <?php
+            foreach ($sendarr as &$value) {
+              $grade = $value['grade'];
+              $count = $value['count'];
+              $cssclass = $value['cssclass'];
+              echo "<a class='badge $cssclass'>$count</a> ";
+            }
+            ?>
+            
 </div>
 </div>
 <div class="card mb-3">
       <div class="card-body">
+        <p class="text-muted">Most climbs in a day</p>
+        <p class="h1"><?php echo $climbs_in_a_day_record; ?></p>
+        <p class="card-text"><small class="text-muted"><i class="bi bi-calendar-event"></i> <?php echo "$climbs_in_a_day_date";?></small></p>
         <p class="text-muted">Most sends in a day</p>
         <p class="h1"><?php echo $sends_in_a_day_record; ?></p>
-
         <p class="card-text"><small class="text-muted"><i class="bi bi-calendar-event"></i> <?php echo "$sends_in_a_day_date";?></small></p>
       </div>
 </div>
@@ -167,7 +212,7 @@
 
           mysqli_close($conn);
 
-          if ($send_count > 0) {
+          if ($climb_count > 0) {
 ?>
 
 
@@ -184,7 +229,7 @@
       <div class="card-body">
         <p class="text-muted">Favorite Grade</p>
         <p class="h1"><?php echo ucfirst($favorite_grade); ?></p>
-        <p class="card-text"><small class="text-muted"><i class="bi bi-card-checklist"></i><?php echo " $favorite_grade_count sends logged"; ?></small></p>
+        <p class="card-text"><small class="text-muted"><i class="bi bi-card-checklist"></i><?php echo " $favorite_grade_count climbs logged"; ?></small></p>
       </div>
 </div>
 <div class="card mb-3">
@@ -196,7 +241,7 @@
           <small class="text-muted">
           <i class="bi bi-geo-alt"></i> <?php echo $favorite_crag_city;?>
             <br /><i class="bi bi-bicycle"></i> <?php echo "Visited $favorite_crag_visit_count times";?>
-            <br /><i class="bi bi-card-checklist"></i> <?php echo "$favorite_crag_logs send logged";?>
+            <br /><i class="bi bi-card-checklist"></i> <?php echo "$favorite_crag_logs climbs logged";?>
           </small>
         </p>
       </div>

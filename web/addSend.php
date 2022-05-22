@@ -136,7 +136,7 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
             <label class="form-label">Style</label>
         </div>
 
-        <div class="row gy-1">
+        <div class="row gy-2">
             <div class="col-md-auto">
                 <input type="radio" class="btn-check" name="frmStyle" id="send" value="send" autocomplete="off"<?php if ($selectedstyle == 'send') { echo " checked";}?>>
                 <label class="btn btn-secondary" for="send">Send</label>

@@ -12,7 +12,6 @@ Apache, PHP, MariaDB and Bootstrap.
 * Google Maps Places API.
 
 ## Needs fixing
-* hamburger button on mobile is nowhere to be seen.
 * change locale on calendar so weeks start on monday.
 * restart policy in docker-compose.yml
 * iso dates shold be replaced with nicer dates, maybe locale js stuff.
@@ -21,4 +20,3 @@ Apache, PHP, MariaDB and Bootstrap.
 * add send buttons should be fetched from db to make it possible to change grading systems in the future.
 * users.php should have edit/delete?
 * sends: terrain: slab/vert/overhang (?).
-* Update ER-diagram.
