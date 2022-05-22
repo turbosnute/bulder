@@ -27,7 +27,7 @@
 
   <div class="bg-light p-5 rounded">
   <h1>Logbook</h1>
-  <a class="btn btn-primary" href="addSend.php">Add new send</a>
+  <a class="btn btn-primary" href="addSend.php">Add send</a>
       <?php
         $first = true;
         $lastDate = "123";
