@@ -50,10 +50,14 @@
     .day.highlightGreen {
         background: #43db2c;
     }
-
+    .day.today {
+        font-weight: bold;
+        color: red;
+    }
 </style>
 
 <?php
+$date = date('Y-m-d');
 
 $currentYear = date('Y');
 //echo "<strong>".date("Y-m-d", strtotime("2011-1-7"))."</strong>";
@@ -118,11 +122,16 @@ for ($month = 1; $month <= 12; $month++) {
         // Logic here is random to simulate data from the DB
         // you would need to alter to do checks against the DB etc.
         if (in_array($processingDate, $haystack)) {
-            $highlightClass = 'highlightGreen';
+            $highlightClass = ' highlightGreen';
         } else {
             $highlightClass = '';
         }
-        echo "<td class='day {$highlightClass}'>{$dayNumber}</td>";
+        
+        if ($processingDate == $date) {
+            $highlightClass  = "$highlightClass today";
+        } 
+
+        echo "<td class='day$highlightClass'>{$dayNumber}</td>";
     }
     echo "</tr>";
 }
