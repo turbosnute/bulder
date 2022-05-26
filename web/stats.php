@@ -114,6 +114,30 @@
               $cssclass = $value['cssclass'];
               echo "<a class='badge $cssclass'>$count</a> ";
             }
+            
+            $query = "SELECT COUNT(*) AS 'count', `bulder_send`.`grade`, `bulder_send`.`style`, `bulder_grade`.`hardness`,  `bulder_grade`.`cssclass`, `bulder_grade`.`friendlyname`
+            FROM `bulder_send`
+            INNER JOIN `bulder`.`bulder_grade` ON `bulder_send`.grade = `bulder_grade`.grade
+            WHERE `user_id` = '$user_id' AND `style` = 'flash'
+            GROUP BY `grade`
+            ORDER BY `count` DESC";
+
+            $result = mysqli_query($conn, $query);
+            $flasharr = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            $userflashcount = array_sum(array_column($flasharr,'count'));
+
+            if ($userflashcount > 0) {
+            ?>
+              <p class="text-muted"><br />Number of flashes logged<br /><span class="metatext">Only first tries</span></p>
+              <p class="h1"><?php echo "$userflashcount"; ?></p>
+              <?php
+              foreach ($flasharr as &$value) {
+                $grade = $value['grade'];
+                $count = $value['count'];
+                $cssclass = $value['cssclass'];
+                echo "<a class='badge $cssclass'>$count</a> ";
+              }
+            }
             ?>
             
 </div>
