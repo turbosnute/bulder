@@ -11,6 +11,12 @@ Apache, PHP, MariaDB and Bootstrap.
 ### External APIs
 * Google Maps Places API.
 
+## Screen shots
+ ![Logbook](bulder1.png)
+ ![Register new send](bulder2.png)
+ ![Diary](bulder3.png)
+ ![Stats](bulder4.png)
+
 ## Needs fixing
 * change locale on calendar so weeks start on monday.
 * restart policy in docker-compose.yml
