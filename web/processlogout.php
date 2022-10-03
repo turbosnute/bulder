@@ -5,7 +5,9 @@
     require_once 'authconf.php';
 
     // Reset OAuth access token
-    $client->revokeToken();
+    if ($useGauth) {
+        $client->revokeToken();
+    }
     
     header("Location: login.php");
 ?>

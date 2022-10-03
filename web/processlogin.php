@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include('config.php');
 
     # Variable initiation
     if(isset($_POST['pw'])) {
@@ -18,7 +19,7 @@
         header("Location: login.php");
     } else {
         $pw = md5($pw);
-        if (($mail == 'adamondra') && ($pw == '460aeae04d42d43cf8a7ca23f80ce781')) {
+        if (($mail == 'adamondra') && ($pw == $stdpw)) {
             $_SESSION['access'] = 'granted';
             $_SESSION['user_name'] = 'Adam Ondra';
             $_SESSION['user_id'] = 5000000;
