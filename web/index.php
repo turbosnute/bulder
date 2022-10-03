@@ -120,7 +120,7 @@
               var split = e.split(',');
               var id = split[0];
               var num = split[1];
-              document.getElementById(id).innerText = num + " sends logged";
+              document.getElementById(id).innerText = num + " climbs logged";
           });
           <?php
           echo "</script>";
