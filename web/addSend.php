@@ -106,7 +106,7 @@ foreach (array('yellow', 'green', 'blue', 'red', 'black', 'white') as &$value) {
         $checked = "";
     }
     echo "            <div class=\"col\">";
-    echo "                <input type=\"radio\" class=\"btn-check\" name=\"frmGrade\" id=\"$value\" value=\"$value\" autocomplete=\"off\" $checked>";
+    echo "                <input type=\"radio\" class=\"btn-check\" name=\"frmGrade\" id=\"$value\" value=\"$value\" autocomplete=\"off\" onclick=\"nextFocus('send')\" $checked>";
     echo "                <label class=\"btn btn-$value btn-c w-100\" for=\"$value\">&nbsp;</label>";
     echo "            </div>";
 }
@@ -123,7 +123,7 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
         $checked = "";
     }
     echo "            <div class=\"col\">";
-    echo "                <input type=\"radio\" class=\"btn-check\" name=\"frmGrade\" id=\"$value\" value=\"$value\" autocomplete=\"off\" $checked>";
+    echo "                <input type=\"radio\" class=\"btn-check\" name=\"frmGrade\" id=\"$value\" value=\"$value\" autocomplete=\"off\" onclick=\"nextFocus('send')\" $checked>";
     echo "                <label class=\"btn btn-$value btn-c w-100\" for=\"$value\">&nbsp;</label>";
     echo "            </div>";
 }
@@ -138,15 +138,15 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
 
         <div class="row gy-2">
             <div class="col-md-auto">
-                <input type="radio" class="btn-check" name="frmStyle" id="send" value="send" autocomplete="off"<?php if ($selectedstyle == 'send') { echo " checked";}?>>
+                <input type="radio" class="btn-check" name="frmStyle" id="send" value="send" onclick="nextFocus('submit')" autocomplete="off"<?php if ($selectedstyle == 'send') { echo " checked";}?>>
                 <label class="btn btn-secondary" for="send">Send</label>
             </div>
             <div class="col-md-auto">
-                <input type="radio" class="btn-check" name="frmStyle" id="flash" value="flash" autocomplete="off"<?php if ($selectedstyle == 'flash') { echo " checked";}?>>
+                <input type="radio" class="btn-check" name="frmStyle" id="flash" value="flash" onclick="nextFocus('submit')" autocomplete="off"<?php if ($selectedstyle == 'flash') { echo " checked";}?>>
                 <label class="btn btn-secondary" for="flash">Flash!</label>
             </div>
             <div class="col-md-auto">
-                <input type="radio" class="btn-check" name="frmStyle" id="repeat" value="repeat" autocomplete="off"<?php if ($selectedstyle == 'repeat') { echo " checked";}?>>
+                <input type="radio" class="btn-check" name="frmStyle" id="repeat" value="repeat" onclick="nextFocus('submit')" autocomplete="off"<?php if ($selectedstyle == 'repeat') { echo " checked";}?>>
                 <label class="btn btn-secondary" for="repeat">Repeat</label>
             </div>
         </div>
@@ -156,7 +156,7 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
     <input type="hidden" id="frmSendId" name="frmSendId" value="<?php echo $send_id; ?>">
     <hr />
     <div class="mb-3">
-        <input class="btn btn-primary" type="submit" value="<?php echo $submitButtonText; ?>"> 
+        <input class="btn btn-primary" type="submit" id="submit" value="<?php echo $submitButtonText; ?>"> 
         <?php
             if (isset($edit) && (is_int(intval($edit)))) {
                 // delete button
@@ -201,7 +201,7 @@ foreach (array('yellowgreen', 'greenblue', 'bluered', 'redblack', 'blackwhite', 
 
 <script src="js/FormValidation.min.js"></script>
 <script src="js/Bootstrap.min.js"></script>
-
+<script src="js/bulder.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function (e) {
         $('[name="frmDate"]')
