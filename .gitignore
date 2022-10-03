@@ -2,3 +2,4 @@ docker-compose2.yml
 backup/
 /bin/
 *Zone.Identifier
+web/config.php
