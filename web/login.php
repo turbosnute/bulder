@@ -161,6 +161,7 @@
     <form method="post" action="processlogin.php">
         <img class="mb-4" src="skosko.svg" alt="" width="128" height="128">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<?php if ($googleLink == '') { ?>
         <div class="form-floating">
         <input id="mail" name="mail" type="text" class="form-control" placeholder="Mail" autocomplete="username email" />
         <label for="mail">mail</label>
@@ -170,6 +171,7 @@
         <label for="pw">password</label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+<?php } ?>
         <?php echo $googleLink; ?>
     </form>
     </main>
