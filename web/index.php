@@ -86,7 +86,7 @@
 
               $day = date("l", strtotime($sendDate));
               echo "<div class=\"row\" style=\"margin-top:25px;\"><div class=\"card\"><div class=\"card-body\">";
-              echo "<div class='col-sm-8'><h4>$day</h4>";
+              echo "<h4>$day</h4>";
               echo "<div class='metatext'><i class=\"bi bi-calendar-event\"></i> $sendDate<br />";
               echo "<i class=\"bi bi-geo-alt\"></i> $gymName <a href='#' id='session_$climbing_session_id'>(edit)</a><br />";
               //echo "<a id='$climbing_session_id' href='#'><i class=\"bi bi-geo-alt\"></i> $gymName</a><br />";
