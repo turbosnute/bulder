@@ -67,6 +67,7 @@ include "dbconfig.php";
 
 $yearQuery = "SELECT distinct YEAR(`date`) AS 'year' FROM bulder_send WHERE user_id = '$user_id' ORDER BY YEAR DESC";
 $yearResult = mysqli_query($conn, $yearQuery);
+$yearCount = mysqli_num_rows($yearResult);
 
 if (isset($_POST['frmYear'])) {
    $frmYear = $_POST['frmYear'];
@@ -178,7 +179,7 @@ for ($month = 1; $month <= 12; $month++) {
     }
     echo "</tr>";
 }
-echo "</table></div>";
+echo "</table><p><strong>$yearCount</strong> sessions in <strong>$year</strong></p></div>";
 
 include('bottom.php');
 ?>

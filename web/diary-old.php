@@ -64,9 +64,26 @@ $currentYear = date('Y');
 $haystack = array(); // all unique dates from the current user within the same year.
 //in_array(mixed $needle, array $haystack
 include "dbconfig.php";
+
+$yearQuery = "SELECT distinct YEAR(`date`) AS 'year' FROM bulder_send WHERE user_id = '$user_id' ORDER BY YEAR DESC";
+$yearResult = mysqli_query($conn, $yearQuery);
+
+if (isset($_POST['frmYear'])) {
+   $frmYear = $_POST['frmYear'];
+   if ((intval($frmYear) > 1990) && (intval($frmYear < 2050))) {
+     $year = intval($frmYear);
+   } else {
+     $year = $currentYear;
+   }
+} else {
+   $year = $currentYear;
+}
+
+
+
 $query = "SELECT DISTINCT `bulder_send`.`date`
           FROM `bulder_send`
-          WHERE `user_id` = '".$_SESSION['user_id']."' AND YEAR(`date`) IN ($currentYear)";
+          WHERE `user_id` = '".$_SESSION['user_id']."' AND YEAR(`date`) IN ($year)";
 
 $result = mysqli_query($conn, $query);
 
@@ -75,11 +92,37 @@ if (mysqli_num_rows($result) > 0) {
     array_push($haystack,$row['date']);
   }
 }
-mysqli_close($conn);
-
-$year = $currentYear;
 
 $headings = ["Su", "Mo","Tu","We","Th","Fr", "Sa"];
+
+
+//$num = mysqli_num_rows($yearResult);
+//echo "num: $num";
+?>
+<form action="diary2.php" method="POST">
+<select name="frmYear" id="year" onchange="this.form.submit()">
+<?php
+
+if (mysqli_num_rows($yearResult) > 0) {
+  while($row = mysqli_fetch_assoc($yearResult)) {
+    echo "   <option value='".$row['year']."'";
+
+    if ($year == $row['year']) {
+      echo " selected";
+    }
+
+    echo ">".$row['year']."</optioin>";
+  }
+} else {
+    echo "   <option value='$year'>$year</option>";
+}
+mysqli_close($conn);
+
+?>
+</select>
+</form>
+<?php
+
 
 echo "<table class=calendar>";           // Create the table
 echo "<tr><td><b>Months</b></td>";       // Column heading for months
