@@ -5,7 +5,7 @@ Attempt to make app for logging your first ascent of boulders optimized for Tron
 Apache, PHP, MariaDB and Bootstrap.
 
 ### Containers
-* php8.2:apache + mysqli
+* php8.1.5:apache + mysqli
 * mariadb
 
 ### External APIs
