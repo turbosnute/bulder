@@ -100,7 +100,7 @@ $headings = ["Su", "Mo","Tu","We","Th","Fr", "Sa"];
 //$num = mysqli_num_rows($yearResult);
 //echo "num: $num";
 ?>
-<form action="diary2.php" method="POST">
+<form action="diary.php" method="POST">
 <select name="frmYear" id="year" onchange="this.form.submit()">
 <?php
 
