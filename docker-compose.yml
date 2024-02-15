@@ -41,16 +41,16 @@ services:
   bulder-web:
     hostname: bulder-web
     build:
-      context: .
-      dockerfile: webserver/Dockerfile
+      context: ./webserver
+      dockerfile: Dockerfile
     container_name: bulder-web
     networks:
       - backend
       - frontend
     depends_on:
       - bulder-db
-    volumes:
-      - ./web/:/var/www/html
+#    volumes:
+#      - bulder-web:/var/www/html/
     ports:
       - 7000:80
 
